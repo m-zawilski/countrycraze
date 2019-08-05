@@ -1,14 +1,15 @@
 import { useState, useEffect } from "react";
 import { SOVEREIGN_STATES, NORMALIZE_NAMES_DICTIONARY } from "./Constants";
 
-function useGetCountries() {
-    let listOfCountries = useFetch("https://restcountries.eu/rest/v2/all", []);
+async function getCountries(){
+    const resp = await fetch("https://restcountries.eu/rest/v2/all");
+    let listOfCountries = await resp.json();
     listOfCountries = assignOfficiallyRecognized(listOfCountries);
     return normalizeNames(listOfCountries, NORMALIZE_NAMES_DICTIONARY);
 }
 
 function useFetch(url, defaultData) {
-    const [ data, setData ] = useState(defaultData, {});
+    const [ data, setData ] = useState(defaultData);
 
     useEffect(() => {
         async function fetchData() {
@@ -48,5 +49,5 @@ function normalizeNames(listOfCountries, dictionary) {
 
 export {
     useFetch,
-    useGetCountries
+    getCountries
 }

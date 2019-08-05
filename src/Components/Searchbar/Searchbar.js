@@ -1,6 +1,6 @@
 import React from "react";
 import "./Searchbar.scss";
-import { REGION } from "../Constants";
+import { REGION } from "../Constants.js";
 
 function Searchbar(props) {
     return (
@@ -19,7 +19,7 @@ function Searchbar(props) {
             Sovereign 
             <input 
                 type="checkbox"
-                onChange={() => props.swapSovereignStatesFilter()}
+                onChange={() => props.swapSovereignStates()}
             />
         </div>
     )

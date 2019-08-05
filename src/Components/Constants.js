@@ -4,7 +4,7 @@ const SORTED_BY = {
 }
 
 const REGION = {
-    NONE: false,
+    NONE: "NONE",
     AFRICA: "AFRICA",
     AMERICAS: "AMERICAS",
     ASIA: "ASIA",
@@ -128,7 +128,6 @@ const SOVEREIGN_STATES = [
     "Mali",
     "Malta",
     "Marshall Islands",
-    "Martinique",
     "Mauritania",
     "Mauritius",
     "Mexico",
