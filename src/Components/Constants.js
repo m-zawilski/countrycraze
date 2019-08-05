@@ -3,19 +3,8 @@ const SORTED_BY = {
     REVERSED_ALPHABETICALLY: "REVERSED_ALPHABETICAL"
 }
 
-const REGION = {
-    NONE: "NONE",
-    AFRICA: "AFRICA",
-    AMERICAS: "AMERICAS",
-    ASIA: "ASIA",
-    EUROPE: "EUROPE",
-    OCEANIA: "OCEANIA",
-    POLAR: "POLAR"
-}
-
 export {
-    SORTED_BY,
-    REGION
+    SORTED_BY
 }
 
 const SOVEREIGN_STATES = [

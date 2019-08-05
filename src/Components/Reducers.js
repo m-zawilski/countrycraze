@@ -1,23 +1,29 @@
-import { SORTED_BY, REGION } from "./Constants.js";
+import { SORTED_BY } from "./Constants.js";
 import actions from "./Actions";
     
 const reducer = (state, action) => {
   return {
-    allCountries: allCountriesReducer(state, action),
+    initial: initialReducer(state, action),
     search: filteredCountriesReducer(state, action), 
     filters: {
       sovereignStates: sovereignStateFilterReducer(state, action),
-      region: regionFilterReducer(state, action)
+      region: regionFilterReducer(state, action),
+      subregion: subregionFilterReducer(state, action)
     }
   }
 }
 
-const allCountriesReducer = (state, action) => {
+const initialReducer = (state, action) => {
   switch (action.type){
-    case actions.SET_ALL_COUNTRIES:
-      return action.payload;
+    case actions.SET_INITIAL_DATA:
+      return {
+        allCountries: action.payload.countries,
+        regionsMapping: action.payload.regionsMapping
+      }
     default:
-      return state.allCountries;
+      return {
+        ...state.initial
+      }
   }
 }
 
@@ -52,11 +58,20 @@ const regionFilterReducer = (state, action) => {
   }
 }
 
+const subregionFilterReducer = (state, action) => {
+  switch(action.type){
+    case actions.CHANGE_SUBREGION_FILTER:
+      return action.payload;
+    default:
+      return state.filters.subregion;
+  }
+}
+
 const search = (state, currentQuery = "") => {
   if((currentQuery !== "") || isAnyFilterTrue(state.filters)){
     return {
       currentQuery: currentQuery,
-      filteredCountries: filter(state.allCountries, currentQuery, state.filters),
+      filteredCountries: filter(state.initial.allCountries, currentQuery, state.filters),
       isSearched: true
     }
   } 
@@ -84,10 +99,16 @@ const filter = (allCountries, query = "", filters = {}, sortedBy = SORTED_BY.ALP
       return country.sovereign;
     } else return true;
   }).filter((country) => {
-    if(filters.region === REGION.NONE){
+    if(filters.region === ""){
       return true;
     } else {
-      return country.region.toUpperCase() === filters.region;
+      return country.region.toUpperCase() === filters.region.toUpperCase();
+    }
+  }).filter((country) => {
+    if(filters.subregion === ""){
+      return true;
+    } else {
+      return country.subregion.toUpperCase() === filters.subregion.toUpperCase();
     }
   });
 }

@@ -9,6 +9,7 @@ function CountriesCardsContainer(props) {
                     <li key={i}>
                         <p>{country.name}</p>
                         <p>{country.region}</p>
+                        <p>{country.subregion}</p>
                     </li>
                 )
             })}
