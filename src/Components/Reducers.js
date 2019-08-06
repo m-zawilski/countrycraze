@@ -9,7 +9,17 @@ const reducer = (state, action) => {
       sovereignStates: sovereignStateFilterReducer(state, action),
       region: regionFilterReducer(state, action),
       subregion: subregionFilterReducer(state, action)
-    }
+    },
+    sortBy: sortByReducer(state, action)
+  }
+}
+
+const sortByReducer = (state, action) => {
+  switch(action.type){
+    case actions.CHANGE_SORTING:
+      return action.payload;
+    default:
+      return state.sortBy;
   }
 }
 
@@ -29,8 +39,20 @@ const initialReducer = (state, action) => {
 
 const filteredCountriesReducer = (state, action) => {
   switch(action.type){
+    case actions.SET_INITIAL_DATA:
+      return {
+        currentQuery: "",
+        filteredCountries: action.payload.countries,
+        isSearched: false
+      }
     case actions.SEARCH:
       return search(state, action.payload);
+    case actions.SORT:
+      return {
+        currentQuery: state.search.currentQuery,
+        filteredCountries: sortCountries(state.search.filteredCountries, state.sortBy),
+        isSearched: state.search.isSearched
+      }
     default:
       return {
         currentQuery: state.search.currentQuery,
@@ -67,17 +89,50 @@ const subregionFilterReducer = (state, action) => {
   }
 }
 
+const sortCountries = (countries, sortBy) => {
+  switch(sortBy){
+    case SORTED_BY.ALPHABETICAL:
+      return countries.sort((c1, c2) => {
+        return c1.name.localeCompare(c2.name);
+      });
+    case SORTED_BY.REVERSED_ALPHABETICAL:
+      return countries.sort((c1, c2) => {
+        return c2.name.localeCompare(c1.name);
+      });
+    case SORTED_BY.LARGEST_POPULATION:
+      return countries.sort((c1, c2) => {
+        return c2.population - c1.population;
+      });
+    case SORTED_BY.SMALLEST_POPULATION:
+      return countries.sort((c1, c2) => {
+        return c1.population - c2.population;
+      });
+    case SORTED_BY.LARGEST_AREA:
+      return countries.sort((c1, c2) => {
+        return c2.area - c1.area;
+      });
+    case SORTED_BY.SMALLEST_AREA:
+      return countries.sort((c1, c2) => {
+        return c1.area - c2.area;
+      });
+    default:
+      return countries;
+  }
+}
+
 const search = (state, currentQuery = "") => {
   if((currentQuery !== "") || isAnyFilterTrue(state.filters)){
+    let filteredCountries = filter(state.initial.allCountries, currentQuery, state.filters);
+    filteredCountries = sortCountries(filteredCountries, state.sortBy);
     return {
       currentQuery: currentQuery,
-      filteredCountries: filter(state.initial.allCountries, currentQuery, state.filters),
+      filteredCountries: filteredCountries,
       isSearched: true
     }
   } 
   return {
     currentQuery: state.search.currentQuery,
-    filteredCountries: state.search.filteredCountries,
+    filteredCountries: state.initial.allCountries,
     isSearched: false
   };
 }
@@ -91,7 +146,7 @@ const isAnyFilterTrue = (filters) => {
   }, false)
 }
 
-const filter = (allCountries, query = "", filters = {}, sortedBy = SORTED_BY.ALPHABETICAL) => {
+const filter = (allCountries, query = "", filters = {}) => {
   return allCountries.filter((country) => {
     return country.name.toUpperCase().includes(query.toUpperCase());
   }).filter((country) => {

@@ -22,7 +22,8 @@ function App() {
       sovereignStates: false,
       region: "",
       subregion: ""
-    }
+    },
+    sortedBy: SORTED_BY.ALPHABETICAL
   });
 
   const swapSovereignStates = () => {
@@ -64,6 +65,16 @@ function App() {
     });
   }
 
+  const changeSorting = (sortingType) => {
+    dispatch({
+      type: actions.CHANGE_SORTING,
+      payload: sortingType
+    })
+    dispatch({
+      type: actions.SORT
+    })
+  }
+
   useEffect(() => {
     getInitialData().then((data) => 
       dispatch({
@@ -84,6 +95,7 @@ function App() {
         changeRegionFilter={changeRegionFilter}
         changeSubregionFilter={changeSubregionFilter}
         regionsMapping={state.initial.regionsMapping}
+        changeSorting={changeSorting}
       />
       <CountriesCardsContainer 
         countries={
