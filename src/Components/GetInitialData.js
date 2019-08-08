@@ -5,44 +5,56 @@ async function getInitialData(){
     const data = await resp.json();
     let listOfCountries = assignOfficiallyRecognized(data);
     listOfCountries = normalizeNames(listOfCountries, NORMALIZE_NAMES_DICTIONARY);
-    let regionsMapping = getHierarchyObject(listOfCountries, "region", ["subregion"]);
+    let regionsMapping = getMapping(listOfCountries, "region", ["subregion"]);
     return {
         countries: listOfCountries,
         regionsMapping: regionsMapping
     }
 }
 
-const getHierarchyObject = (listOfCountries, mainKey, otherKeys) => {
+// Accepts a list of objects, main key of those objects and an array of other keys.
+// Returns object, where each key is one value from values in main key.
+// These keys map objects, which have arrays of possible values from other keys.
+const getMapping = (listOfCountries, mainKey, otherKeys) => {
+    let mainValues = assignKeysFromMainKeyValues(listOfCountries, mainKey);
+    mainValues = assignKeysFromOtherKeysValues(mainValues, otherKeys);
+    mainValues = fillOtherKeysWithPossibleValues(mainValues, listOfCountries, mainKey, otherKeys);
+    return mainValues;
+}
+
+const assignKeysFromMainKeyValues = (listOfCountries, mainKey) => {
     let mainValues = {};
-    listOfCountries.map((country) => {
+    for(let country of listOfCountries){
         if(!Object.keys(mainValues).includes(country[mainKey])){
             mainValues = Object.assign({}, mainValues, {[country[mainKey]]: {}})
         }
-        return null;
-    })
-    Object.keys(mainValues).map((mainValue) => {
-        otherKeys.map((otherKey) => {
+    }
+    return mainValues;
+}
+
+const assignKeysFromOtherKeysValues = (mainValues, otherKeys) => {
+    for(let mainValue of Object.keys(mainValues)){
+        for(let otherKey of otherKeys){
             if(!Object.keys(mainValues).includes(otherKey)){
                 mainValues[mainValue] = Object.assign({}, mainValues[mainValue], {[otherKey]: []})
             }
-            return null;
-        })
-        return null;
-    })
-    listOfCountries.map((country) => {
-        Object.keys(mainValues).map((mainValue) => {
+        }
+    }
+    return mainValues;
+}
+
+const fillOtherKeysWithPossibleValues = (mainValues, listOfCountries, mainKey, otherKeys) => {
+    for(let country of listOfCountries){
+        for(let mainValue of Object.keys(mainValues)){
             if(mainValue === country[mainKey]){
-                otherKeys.map((otherKey) => {
+                for(let otherKey of otherKeys){
                     if(!mainValues[mainValue][otherKey].includes(country[otherKey])){
                         mainValues[mainValue][otherKey].push(country[otherKey]);
                     }
-                    return null;
-                })
+                }
             }
-            return null;
-        })
-        return null;
-    })
+        }
+    }
     return mainValues;
 }
 

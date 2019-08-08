@@ -10,8 +10,8 @@ function CountriesCardsContainer(props) {
                         <p>{country.name}</p>
                         <p>{country.region}</p>
                         <p>{country.subregion}</p>
-                        <p>{country.population} people</p>
-                        <p>{country.area} km^2</p>
+                        <p>{country.population}</p>
+                        <p>{country.area} km2</p>
                     </li>
                 )
             })}
