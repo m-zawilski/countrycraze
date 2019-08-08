@@ -1,0 +1,4 @@
+
+> countrycraze@0.1.0 test-CI /Users/maciejzawilski/Documents/Projects/countrycraze
+> CI=true react-scripts test
+

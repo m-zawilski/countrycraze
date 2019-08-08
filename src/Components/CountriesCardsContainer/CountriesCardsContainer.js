@@ -7,7 +7,7 @@ function CountriesCardsContainer(props) {
             {props.countries.map((country, i) => {
                 return (
                     <li key={i}>
-                        <p style="color:red;">{country.name}</p>
+                        <p>{country.name}</p>
                         <p>{country.region}</p>
                         <p>{country.subregion}</p>
                         <p>{country.population}</p>
