@@ -7,7 +7,7 @@ const CardsContainer = styled.div`
   display: flex;
   max-width: 960px;
   flex-wrap: wrap;
-  justify-content: space-around;
+  justify-content: center;
   align-items: center;
 `
 

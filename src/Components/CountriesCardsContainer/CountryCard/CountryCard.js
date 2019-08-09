@@ -1,22 +1,28 @@
-import React from 'react'
+import React from "react"
 import styled from "styled-components";
+import { lighten, darken } from "polished";
 
 const REGION_COLORS = {
-  "Africa": "#123456",
-  "Americas": "#123456",
-  "Asia": "#999333",
-  "Europe": "#876543",
-  "Oceania": "#765432",
-  "Polar": "#654321",
-  "": "#999999"
+  "Africa": "#9f5338",
+  "Americas": "#2a30c0",
+  "Asia": "#30780d",
+  "Europe": "#4d258d",
+  "Oceania": "#55c9cb",
+  "Polar": "#3f8374",
+  "": "#b0b0b0"
 }
 
 const Card = styled.div`
   width: 220px;
-  height: 300px;
+  height: 280px;
   text-align: center;
-  border: 1px solid #000;
-  margin: 10px 0;
+  background: #eee;
+  border-radius: 8px;
+  box-shadow: 1px 1px 4px #000;
+  margin: 10px;
+  p {
+    margin: 5px;
+  }
 `
 
 const Flag = styled.img`
@@ -26,27 +32,47 @@ const Flag = styled.img`
 
 const CardHeader = styled.div`
   display: flex;
-  flex-direction: column;
   width: 100%;
-  height: 20%;
-  background: ${props => REGION_COLORS[props.region]};
-  padding: 10px;
-  justify-content: center;
+  height: 25%;
+  border-radius: 8px 8px 0 0;
+  background: linear-gradient(
+    70deg,
+    ${props => lighten(.1, REGION_COLORS[props.region])} 10%, 
+    ${props => REGION_COLORS[props.region]} 50%,
+    ${props => darken(.1, REGION_COLORS[props.region])} 90%
+  ) ;
   h2, p {
     margin: 0;
-    font-size: 1em;
   }
+  padding: 10px;
+  justify-content: space-between;
+  align-items: center;
+`
+
+const CardTitle = styled.div`
+  display: flex;
+  flex-direction: column;
+  margin-right: 10px;
   .name {
     font-weight: 600;
+    font-size: ${props => props.mainLength < 30 ? "1.1em" : ".9em"}};
   }
   .native-name {
-    font-size: .75em;
+    font-size: ${props => props.secondaryLength < 30 ? ".8em" : ".7em"};
   }
+`
+
+const CardBody = styled.div`
+  display: flex;
+  height: 75%;
+  flex-direction: column;
+  justify-content: center;
 `
 
 const putCommas = (bigNumber) => {
   let numberWithCommas = "";
   const digits = String(bigNumber);
+  if(digits.includes(".")) { return digits; }
   for(let i = digits.length - 1; i >= 0; i--){
     numberWithCommas += digits[i];
     if((digits.length-i) % 3 === 0 && i !== 0){
@@ -61,18 +87,25 @@ function CountryCard(props) {
   return (
     <Card>
       <CardHeader region={country.region}>
-        <h2 className="name">{country.name}</h2>
-        <p className="native-name">{country.nativeName}</p>
-      </CardHeader>
-      <p>{country.capital ? country.capital : "None"}</p>
-      <p>{country.region ? country.region : "None"}</p>
-      <p>{country.subregion ? country.subregion : "None"}</p>
-      <p>{country.population ? putCommas(country.population) : "0"}</p>
-      <p>{country.area ? putCommas(country.area) : "<1"} km²</p>
+        <CardTitle
+            mainLength={country.name.length}
+            secondaryLength={country.name.length}
+        >
+          <h2 className="name">{country.name}</h2>
+          <p className="native-name">{country.nativeName}</p>
+        </CardTitle>
         <Flag 
           src={country.flag} 
           alt={`${country.name} flag`
         }/>
+      </CardHeader>
+      <CardBody>
+        <p><strong>Capital city:</strong> {country.capital ? country.capital : "None"}</p>
+        <p><strong>Region:</strong> {country.region ? country.region : "None"}</p>
+        <p><strong>Subregion:</strong> {country.subregion ? country.subregion : "None"}</p>
+        <p><strong>Population:</strong> {country.population ? putCommas(country.population) : "0"}</p>
+        {country.area ? <p><strong>Area:</strong>{` ${putCommas(country.area)} km²`}</p> : null}
+      </CardBody>
     </Card>
   )
 }
