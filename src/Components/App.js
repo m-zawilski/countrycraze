@@ -6,6 +6,19 @@ import getInitialData from "./GetInitialData";
 import { SORTED_BY } from "./Constants.js";
 import reducer from "./Reducers.js";
 import actions from "./Actions.js";
+import styled from "styled-components";
+import 'typeface-roboto';
+
+const AppContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  font-family: Roboto;
+
+  * {
+    box-sizing: border-box;
+  }
+`
 
 function App() {
   const [state, dispatch] = useReducer(reducer, {
@@ -88,7 +101,7 @@ function App() {
   }, [dispatch])
 
   return (
-    <div>
+    <AppContainer>
       <Searchbar 
         search={search}
         swapSovereignStates={swapSovereignStates}
@@ -104,7 +117,7 @@ function App() {
           state.initial.allCountries
         }
       />
-    </div>
+    </AppContainer>
   );
 }
 

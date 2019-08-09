@@ -1,22 +1,29 @@
 import React from "react";
 import "./CountriesCardsContainer.scss";
+import CountryCard from "./CountryCard/CountryCard";
+import styled from "styled-components";
+
+const CardsContainer = styled.div`
+  display: flex;
+  max-width: 960px;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  align-items: center;
+`
 
 function CountriesCardsContainer(props) {
-    return (
-        <ul>
-            {props.countries.map((country, i) => {
-                return (
-                    <li key={i}>
-                        <p>{country.name}</p>
-                        <p>{country.region}</p>
-                        <p>{country.subregion}</p>
-                        <p>{country.population}</p>
-                        <p>{country.area} km2</p>
-                    </li>
-                )
-            })}
-        </ul>
-    )
+  return (
+    <CardsContainer>
+      {props.countries.map((country, i) => {
+        return (
+            <CountryCard 
+              country={country}
+              key={i}
+            />
+          )
+      })}
+    </CardsContainer>
+  )
 }
-
+    
 export default CountriesCardsContainer;

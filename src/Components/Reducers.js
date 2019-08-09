@@ -54,11 +54,7 @@ const filteredCountriesReducer = (state, action) => {
         isSearched: state.search.isSearched
       }
     default:
-      return {
-        currentQuery: state.search.currentQuery,
-        filteredCountries: state.search.filteredCountries,
-        isSearched: false
-      };
+      return state.search;
   }
 }
 
@@ -90,34 +86,39 @@ const subregionFilterReducer = (state, action) => {
 }
 
 const sortCountries = (countries, sortBy) => {
+  debugger;
   switch(sortBy){
     case SORTED_BY.ALPHABETICAL:
-      return countries.sort((c1, c2) => {
-        return c1.name.localeCompare(c2.name);
-      });
+      return sortAlphabetical(countries);
     case SORTED_BY.REVERSED_ALPHABETICAL:
       return countries.sort((c1, c2) => {
         return c2.name.localeCompare(c1.name);
       });
     case SORTED_BY.LARGEST_POPULATION:
-      return countries.sort((c1, c2) => {
+      return sortAlphabetical(countries).sort((c1, c2) => {
         return c2.population - c1.population;
       });
     case SORTED_BY.SMALLEST_POPULATION:
-      return countries.sort((c1, c2) => {
+      return sortAlphabetical(countries).sort((c1, c2) => {
         return c1.population - c2.population;
       });
     case SORTED_BY.LARGEST_AREA:
-      return countries.sort((c1, c2) => {
+      return sortAlphabetical(countries).sort((c1, c2) => {
         return c2.area - c1.area;
       });
     case SORTED_BY.SMALLEST_AREA:
-      return countries.sort((c1, c2) => {
+      return sortAlphabetical(countries).sort((c1, c2) => {
         return c1.area - c2.area;
       });
     default:
       return countries;
   }
+}
+
+const sortAlphabetical = (countries) => {
+  return countries.sort((c1, c2) => {
+    return c1.name.localeCompare(c2.name);
+  });
 }
 
 const search = (state, currentQuery = "") => {
