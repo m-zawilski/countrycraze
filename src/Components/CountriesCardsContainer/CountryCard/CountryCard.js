@@ -53,12 +53,13 @@ const CardTitle = styled.div`
   display: flex;
   flex-direction: column;
   margin-right: 10px;
+  text-align: left;
   .name {
     font-weight: 600;
-    font-size: ${props => props.mainLength < 30 ? "1.1em" : ".9em"}};
+    font-size: ${props => props.mainLength < 20 ? "1.1em" : `${1.1 - props.mainLength*0.008}em`}};
   }
   .native-name {
-    font-size: ${props => props.secondaryLength < 30 ? ".8em" : ".7em"};
+    font-size: ${props => props.secondaryLength < 20 ? ".8em" : `${.8 - props.secondaryLength*0.005}em`};
   }
 `
 
@@ -89,7 +90,7 @@ function CountryCard(props) {
       <CardHeader region={country.region}>
         <CardTitle
             mainLength={country.name.length}
-            secondaryLength={country.name.length}
+            secondaryLength={country.nativeName.length}
         >
           <h2 className="name">{country.name}</h2>
           <p className="native-name">{country.nativeName}</p>
