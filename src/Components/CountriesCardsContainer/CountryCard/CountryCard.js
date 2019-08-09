@@ -1,6 +1,16 @@
 import React from 'react'
 import styled from "styled-components";
 
+const REGION_COLORS = {
+  "Africa": "#123456",
+  "Americas": "#123456",
+  "Asia": "#999333",
+  "Europe": "#876543",
+  "Oceania": "#765432",
+  "Polar": "#654321",
+  "": "#999999"
+}
+
 const Card = styled.div`
   width: 220px;
   height: 300px;
@@ -19,7 +29,7 @@ const CardHeader = styled.div`
   flex-direction: column;
   width: 100%;
   height: 20%;
-  background: green;
+  background: ${props => REGION_COLORS[props.region]};
   padding: 10px;
   justify-content: center;
   h2, p {
@@ -32,11 +42,6 @@ const CardHeader = styled.div`
   .native-name {
     font-size: .75em;
   }
-`
-
-const CardTitle = styled.div`
-  display: flex;
-  height: 100%;
 `
 
 const putCommas = (bigNumber) => {
@@ -55,7 +60,7 @@ function CountryCard(props) {
   const { country } = props;
   return (
     <Card>
-      <CardHeader>
+      <CardHeader region={country.region}>
         <h2 className="name">{country.name}</h2>
         <p className="native-name">{country.nativeName}</p>
       </CardHeader>
