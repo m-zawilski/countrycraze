@@ -9,7 +9,8 @@ function Searchbar(props) {
     return <p>Loading...</p>;
   }
   return (
-    <div>
+    <div style={{position: "sticky", borderBottom: "1px solid #000", top: "0", width: "100%", background: "white", margin: "0",
+    display: "flex", justifyContent: "center", padding: "10px"}}>
       <input 
         onChange={(e) => props.search(e.target.value)}
       />

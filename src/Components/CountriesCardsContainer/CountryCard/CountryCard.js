@@ -59,7 +59,7 @@ const CardTitle = styled.div`
     font-size: ${props => props.mainLength < 20 ? "1.1em" : `${1.1 - props.mainLength*0.008}em`}};
   }
   .native-name {
-    font-size: ${props => props.secondaryLength < 20 ? ".8em" : `${.8 - props.secondaryLength*0.005}em`};
+    font-size: ${props => props.secondaryLength < 20 ? ".8em" : `${.8 - props.secondaryLength*0.004}em`};
   }
 `
 
