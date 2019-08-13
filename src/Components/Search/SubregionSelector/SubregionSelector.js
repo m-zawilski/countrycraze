@@ -1,21 +1,28 @@
 import React from 'react'
+import styled from "styled-components";
 
+const SubregionSelect = styled.select`
+  width: 180px;
+  text-align-last: center;
+  margin: 3px;
+  cursor: pointer;
+`
 function SubregionSelector(props) {
   return (
-    <select 
-    value={props.selectedSubregion}
-    onChange={(e) => {
-      props.setSelectedSubregion(e.target.value);
-      props.changeSubregionFilter(e.target.value);
-    }}
-  >
+    <SubregionSelect 
+      value={props.selectedSubregion}
+      onChange={(e) => {
+        props.setSelectedSubregion(e.target.value);
+        props.changeSubregionFilter(e.target.value);
+      }}
+    >
     {props.subregions.map((subregion, i) => {
       return <option 
         value={subregion}
         key={i}
-      >{subregion ? subregion : "All"}</option>
+      >{subregion ? subregion : "(Subregion)"}</option>
     })}
-  </select>
+  </SubregionSelect>
   )
 }
 

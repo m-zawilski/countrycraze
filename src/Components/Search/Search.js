@@ -7,10 +7,11 @@ import Searchbar from "./Searchbar/Searchbar";
 import styled from "styled-components";
 
 const SearchContainer = styled.div`
-  background: white;
-  width: 100%;
   display: flex;
-  justify-content: center; 
+  flex-direction: column;
+  background: lightblue;
+  width: 100%;
+  align-items: center;
   padding: 10px;
   position: sticky;
   top: 0;
@@ -23,20 +24,22 @@ function Search(props) {
   return (
     <SearchContainer>
       <Searchbar search={props.search}/>
-      <RegionSelector
-        regionsMapping={props.regionsMapping}
-        setSubregions={setSubregions}
-        setSelectedSubregion={setSelectedSubregion}
-        changeRegionFilter={props.changeRegionFilter}
-        changeSubregionFilter={props.changeSubregionFilter}
-      />
-      <SubregionSelector
-        selectedSubregion={selectedSubregion}
-        setSelectedSubregion={setSelectedSubregion}
-        changeSubregionFilter={props.changeSubregionFilter}
-        subregions={subregions}
-      />
       <SovereignFilter swapSovereignStates={props.swapSovereignStates}/>
+      <div>
+        <RegionSelector
+          regionsMapping={props.regionsMapping}
+          setSubregions={setSubregions}
+          setSelectedSubregion={setSelectedSubregion}
+          changeRegionFilter={props.changeRegionFilter}
+          changeSubregionFilter={props.changeSubregionFilter}
+        />
+        <SubregionSelector
+          selectedSubregion={selectedSubregion}
+          setSelectedSubregion={setSelectedSubregion}
+          changeSubregionFilter={props.changeSubregionFilter}
+          subregions={subregions}
+        />
+      </div>
       <SortingSelectors changeSorting={props.changeSorting}/>
     </SearchContainer>
   )

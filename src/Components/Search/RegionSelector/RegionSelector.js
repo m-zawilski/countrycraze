@@ -1,8 +1,16 @@
 import React from 'react'
+import styled from "styled-components";
+
+const RegionSelect = styled.select`
+  width: 80px;
+  text-align-last: center;
+  margin: 3px;
+  cursor: pointer;
+`
 
 const RegionSelector = (props) => {
   return (
-    <select onChange={(e) => {
+    <RegionSelect onChange={(e) => {
       let subregion = props.regionsMapping[e.target.value]["subregion"].sort();
       if(e.target.value !== "" && 
         props.regionsMapping[e.target.value]["subregion"].length > 1){
@@ -18,9 +26,9 @@ const RegionSelector = (props) => {
         return <option 
           value={region}
           key={i}
-        >{region ? region : "All"}</option>
+        >{region ? region : "(Region)"}</option>
       })}
-    </select>
+    </RegionSelect>
   )
 }
 
