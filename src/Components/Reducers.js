@@ -27,7 +27,16 @@ const initialReducer = (state, action) => {
   switch (action.type){
     case actionTypes.SET_INITIAL_DATA:
       return {
-        allCountries: action.payload.countries,
+        allCountries: [...action.payload.countries, {
+          "name": "San Escobar",
+          "nativeName": "San Escobar",
+          "region": "Americas",
+          "subregion": "Caribbean",
+          "capital": "Santo Subito",
+          "population": 123456,
+          "area": 2137,
+          "flag": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/ff/Flag_of_San_Escobar.svg/1200px-Flag_of_San_Escobar.svg.png"
+        }],
         regionsMapping: action.payload.regionsMapping
       }
     default:

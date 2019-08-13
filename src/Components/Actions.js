@@ -8,30 +8,10 @@ export const actionTypes = {
   SORT: "SORT"
 }
 
-const swapSovereignStatesFilter = () => {
-  return {
-    type: actionTypes.SWAP_SOVEREIGN_STATES_FILTER
-  }
-}
-
-const search = (query) => {
-  return {
-    type: actionTypes.SEARCH,
-    payload: query
-  }
-}
-
 const changeRegionFilter = (region) => {
   return {
     type: actionTypes.CHANGE_REGION_FILTER,
     payload: region
-  }
-}
-
-const changeSubregionFilter = (subregion) => {
-  return {
-    type: actionTypes.CHANGE_SUBREGION_FILTER,
-    payload: subregion
   }
 }
 
@@ -42,9 +22,17 @@ const changeSortingType = (sortingType) => {
   }
 }
 
-const sort = () => {
+const changeSubregionFilter = (subregion) => {
   return {
-    type: actionTypes.SORT
+    type: actionTypes.CHANGE_SUBREGION_FILTER,
+    payload: subregion
+  }
+}
+
+const search = (query) => {
+  return {
+    type: actionTypes.SEARCH,
+    payload: query
   }
 }
 
@@ -58,12 +46,24 @@ const setInitialData = (data) => {
   }
 }
 
+const sort = () => {
+  return {
+    type: actionTypes.SORT
+  }
+}
+
+const swapSovereignStatesFilter = () => {
+  return {
+    type: actionTypes.SWAP_SOVEREIGN_STATES_FILTER
+  }
+}
+
 export default {
+  changeRegionFilter,
+  changeSortingType,
+  changeSubregionFilter,
   setInitialData,
   search,
+  sort,
   swapSovereignStatesFilter,
-  changeRegionFilter,
-  changeSubregionFilter,
-  changeSortingType,
-  sort
 }
