@@ -32,6 +32,7 @@ function SortingSelectors(props) {
                 props.changeSorting(sorting);
                 setSelectedFilter(sorting);
               }}
+              key={i}
             >
               <input 
                 type="radio"

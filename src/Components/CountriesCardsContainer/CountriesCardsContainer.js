@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import CountryCard from "./CountryCard/CountryCard";
 import styled from "styled-components";
+import PaginationButtons from "./PaginationButtons/PaginationButtons";
 
 const CardsContainer = styled.div`
   display: flex;
@@ -8,11 +9,11 @@ const CardsContainer = styled.div`
   flex-wrap: wrap;
   justify-content: center;
   align-items: center;
+  margin: 0;
 `
 
 function CountriesCardsContainer(props) {
-  const [pageResults, setPageResults] = useState(20);
-  const [paginationStart, setPaginationStart] = useState(0);
+  const [pageResultsSize, setPageResultsSize] = useState(20);
 
   if(props.countries.length === 0){
     return <p>
@@ -21,16 +22,28 @@ function CountriesCardsContainer(props) {
   }
 
   return (
-    <CardsContainer>
-      {props.countries.map((country, i) => {
-        return i < paginationStart + pageResults ? (
-            <CountryCard 
-              country={country}
-              key={i}
-            />
-          ) : null;
-      })}
-    </CardsContainer>
+    <>
+      <PaginationButtons
+        pagesCount={Math.ceil(props.countries.length/pageResultsSize)}
+        page={props.page}
+        setPage={props.setPage}
+      />
+      <CardsContainer>
+        {props.countries.map((country, i) => {
+          return (i < props.page * pageResultsSize && i >= (props.page - 1) * pageResultsSize ) ? (
+              <CountryCard 
+                country={country}
+                key={i}
+              />
+            ) : null;
+        })}
+      </CardsContainer>
+      <PaginationButtons
+        pagesCount={Math.ceil(props.countries.length/pageResultsSize)}
+        page={props.page}
+        setPage={props.setPage}
+      />
+    </>
   )
 }
     

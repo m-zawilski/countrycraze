@@ -18,7 +18,7 @@ function SovereignFilter(props) {
   const [ isActive, setIsActive ] = useState(false);
 
   return (
-    <div>
+    <>
       <Sovereign 
         onClick={() => {
           props.swapSovereignStates();
@@ -29,7 +29,7 @@ function SovereignFilter(props) {
       >
         only sovereign
       </Sovereign> 
-    </div>
+    </>
   )
 }
 

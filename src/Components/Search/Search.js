@@ -24,7 +24,6 @@ function Search(props) {
   return (
     <SearchContainer>
       <Searchbar search={props.search}/>
-      <SovereignFilter swapSovereignStates={props.swapSovereignStates}/>
       <div>
         <RegionSelector
           regionsMapping={props.regionsMapping}
@@ -39,6 +38,7 @@ function Search(props) {
           changeSubregionFilter={props.changeSubregionFilter}
           subregions={subregions}
         />
+        <SovereignFilter swapSovereignStates={props.swapSovereignStates}/>
       </div>
       <SortingSelectors changeSorting={props.changeSorting}/>
     </SearchContainer>

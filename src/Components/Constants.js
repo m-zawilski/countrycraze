@@ -7,8 +7,11 @@ const SORTED_BY = {
   SMALLEST_AREA: "SMALLEST_AREA",
 }
 
+const INITIAL_PAGE = 1;
+
 export {
-  SORTED_BY
+  SORTED_BY,
+  INITIAL_PAGE
 }
 
 const SOVEREIGN_STATES = [

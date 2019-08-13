@@ -2,7 +2,7 @@ import React, { useEffect, useReducer } from 'react';
 import Search from "./Search/Search";
 import CountriesCardsContainer from "./CountriesCardsContainer/CountriesCardsContainer";
 import getInitialData from "./GetInitialData";
-import { SORTED_BY } from "./Constants.js";
+import { SORTED_BY, INITIAL_PAGE } from "./Constants.js";
 import reducer from "./Reducers.js";
 import actions from "./Actions.js";
 import styled from "styled-components";
@@ -35,7 +35,8 @@ function App() {
       region: "",
       subregion: ""
     },
-    sortedBy: SORTED_BY.ALPHABETICAL
+    sortedBy: SORTED_BY.ALPHABETICAL,
+    page: INITIAL_PAGE
   });
 
   const swapSovereignStates = () => {
@@ -60,6 +61,10 @@ function App() {
   const changeSorting = (sortingType) => {
     dispatch(actions.changeSortingType(sortingType))
     dispatch(actions.sort())
+  }
+
+  const setPage = (number) => {
+    dispatch(actions.changePage(number))
   }
 
   useEffect(() => {
@@ -91,6 +96,8 @@ function App() {
           state.search.filteredCountries : 
           state.initial.allCountries
         }
+        page={state.page}
+        setPage={setPage}
       />
     </AppContainer>
   );

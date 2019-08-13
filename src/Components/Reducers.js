@@ -1,4 +1,4 @@
-import { SORTED_BY } from "./Constants.js";
+import { SORTED_BY, INITIAL_PAGE } from "./Constants.js";
 import { actionTypes } from "./Actions";
     
 const reducer = (state, action) => {
@@ -10,7 +10,8 @@ const reducer = (state, action) => {
       region: regionFilterReducer(state, action),
       subregion: subregionFilterReducer(state, action)
     },
-    sortBy: sortByReducer(state, action)
+    sortBy: sortByReducer(state, action),
+    page: pageReducer(state, action)
   }
 }
 
@@ -82,6 +83,17 @@ const subregionFilterReducer = (state, action) => {
       return action.payload;
     default:
       return state.filters.subregion;
+  }
+}
+
+const pageReducer = (state, action) => {
+  switch(action.type){
+    case actionTypes.CHANGE_PAGE:
+      return action.payload;
+    case actionTypes.SEARCH:
+      return INITIAL_PAGE;
+    default: 
+      return INITIAL_PAGE;
   }
 }
 

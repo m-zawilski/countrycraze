@@ -5,7 +5,8 @@ export const actionTypes = {
   CHANGE_SUBREGION_FILTER: "CHANGE_SUBREGION_FILTER",
   SEARCH: "SEARCH",
   CHANGE_SORTING: "CHANGE_SORTING",
-  SORT: "SORT"
+  SORT: "SORT",
+  CHANGE_PAGE: "CHANGE_PAGE"
 }
 
 const changeRegionFilter = (region) => {
@@ -58,6 +59,13 @@ const swapSovereignStatesFilter = () => {
   }
 }
 
+const changePage = (page) => {
+  return {
+    type: actionTypes.CHANGE_PAGE,
+    payload: page
+  }
+}
+
 export default {
   changeRegionFilter,
   changeSortingType,
@@ -66,4 +74,5 @@ export default {
   search,
   sort,
   swapSovereignStatesFilter,
+  changePage,
 }

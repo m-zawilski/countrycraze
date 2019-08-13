@@ -84,7 +84,6 @@ const putCommas = (bigNumber) => {
 }
 
 function CountryCard(props) {
-  console.log(props.country)
   const { country } = props;
   return (
     <Card>
