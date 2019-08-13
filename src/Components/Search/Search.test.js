@@ -1,7 +1,7 @@
 import React from 'react';
 import { shallow } from 'enzyme';
-import Searchbar from './Searchbar';
+import Search from './Search';
 
 it('renders without crashing', () => {
-  expect(shallow(<Searchbar/>)).toMatchSnapshot();
+  expect(shallow(<Search/>)).toMatchSnapshot();
 });

@@ -1,6 +1,5 @@
 import React, { useEffect, useReducer } from 'react';
-import './App.scss';
-import Searchbar from "./Searchbar/Searchbar";
+import Search from "./Search/Search";
 import CountriesCardsContainer from "./CountriesCardsContainer/CountriesCardsContainer";
 import getInitialData from "./GetInitialData";
 import { SORTED_BY } from "./Constants.js";
@@ -66,7 +65,10 @@ function App() {
   useEffect(() => {
     getInitialData().then((data) => 
       dispatch(actions.setInitialData(data))
-    )
+    ).catch((error) => {
+      console.log(error);
+      return <p>There was an error while downloading the data.</p>
+    })
   }, [dispatch])
   
   if(!state.initial.regionsMapping || !Object.keys(state.initial.regionsMapping).length){
@@ -75,7 +77,7 @@ function App() {
 
   return (
     <AppContainer>
-      <Searchbar 
+      <Search 
         search={search}
         swapSovereignStates={swapSovereignStates}
         changeRegionFilter={changeRegionFilter}
