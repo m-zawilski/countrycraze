@@ -5,9 +5,6 @@ import { SORTED_BY } from "../Constants.js";
 function Searchbar(props) {
   const [ subregions, setSubregions ] = useState([""]);
   const [ selectedSubregion, setSelectedSubregion ] = useState("");
-  if(!props.regionsMapping || !Object.keys(props.regionsMapping).length){
-    return <p>Loading...</p>;
-  }
   return (
     <div style={{position: "sticky", borderBottom: "1px solid #000", top: "0", width: "100%", background: "white", margin: "0",
     display: "flex", justifyContent: "center", padding: "10px"}}>
@@ -16,7 +13,6 @@ function Searchbar(props) {
       />
       <select onChange={(e) => {
         let subregion = props.regionsMapping[e.target.value]["subregion"].sort();
-        console.log(props.regionsMapping[e.target.value])
         if(e.target.value !== "" && 
             props.regionsMapping[e.target.value]["subregion"].length > 1){
           setSubregions(["", ...subregion]);

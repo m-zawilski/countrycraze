@@ -4,10 +4,10 @@ import { lighten, darken } from "polished";
 
 const REGION_COLORS = {
   "Africa": "#9f5338",
-  "Americas": "#2a30c0",
-  "Asia": "#30780d",
-  "Europe": "#4d258d",
-  "Oceania": "#55c9cb",
+  "Americas": "#8b5dd4",
+  "Asia": "#398f0f",
+  "Europe": "#464cd7",
+  "Oceania": "#66ced0",
   "Polar": "#3f8374",
   "": "#b0b0b0"
 }
@@ -101,9 +101,9 @@ function CountryCard(props) {
         }/>
       </CardHeader>
       <CardBody>
-        <p><strong>Capital city:</strong> {country.capital ? country.capital : "None"}</p>
-        <p><strong>Region:</strong> {country.region ? country.region : "None"}</p>
-        <p><strong>Subregion:</strong> {country.subregion ? country.subregion : "None"}</p>
+        <p><strong>Capital city:</strong> {country.capital ? country.capital : "-"}</p>
+        <p><strong>Region:</strong> {country.region ? country.region : "-"}</p>
+        <p><strong>Subregion:</strong> {country.subregion ? country.subregion : "-"}</p>
         <p><strong>Population:</strong> {country.population ? putCommas(country.population) : "0"}</p>
         {country.area ? <p><strong>Area:</strong>{` ${putCommas(country.area)} km²`}</p> : null}
       </CardBody>

@@ -12,6 +12,12 @@ const CardsContainer = styled.div`
 `
 
 function CountriesCardsContainer(props) {
+  if(props.countries.length === 0){
+    return <p>
+      Sorry. Nothing was found. Change your search criteria.
+    </p>
+  }
+
   return (
     <CardsContainer>
       {props.countries.map((country, i) => {

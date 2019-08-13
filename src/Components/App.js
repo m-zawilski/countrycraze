@@ -40,65 +40,38 @@ function App() {
   });
 
   const swapSovereignStates = () => {
-    dispatch({
-      type: actions.SWAP_SOVEREIGN_STATES_FILTER
-    });
-    dispatch({
-      type: actions.SEARCH,
-      payload: state.search.currentQuery
-    });
+    dispatch(actions.swapSovereignStatesFilter());
+    dispatch(actions.search(state.search.currentQuery));
   }
 
   const changeRegionFilter = (region) => {
-    dispatch({
-      type: actions.CHANGE_REGION_FILTER,
-      payload: region
-    });
-    dispatch({
-      type: actions.SEARCH,
-      payload: state.search.currentQuery
-    });
+    dispatch(actions.changeRegionFilter(region));
+    dispatch(actions.search(state.search.currentQuery));
   }
 
   const changeSubregionFilter = (subregion) => {
-    dispatch({
-      type: actions.CHANGE_SUBREGION_FILTER,
-      payload: subregion
-    });
-    dispatch({
-      type: actions.SEARCH,
-      payload: state.search.currentQuery
-    });
+    dispatch(actions.changeSubregionFilter(subregion));
+    dispatch(actions.search(state.search.currentQuery));
   }
 
   const search = (query) => {
-    dispatch({
-      type: actions.SEARCH,
-      payload: query
-    });
+    dispatch(actions.search(query));
   }
 
   const changeSorting = (sortingType) => {
-    dispatch({
-      type: actions.CHANGE_SORTING,
-      payload: sortingType
-    })
-    dispatch({
-      type: actions.SORT
-    })
+    dispatch(actions.changeSortingType(sortingType))
+    dispatch(actions.sort())
   }
 
   useEffect(() => {
     getInitialData().then((data) => 
-      dispatch({
-        type: actions.SET_INITIAL_DATA,
-        payload: {
-          countries: data.countries,
-          regionsMapping: data.regionsMapping
-        }
-      })
+      dispatch(actions.setInitialData(data))
     )
   }, [dispatch])
+  
+  if(!state.initial.regionsMapping || !Object.keys(state.initial.regionsMapping).length){
+    return <p>Loading...</p>;
+  }
 
   return (
     <AppContainer>

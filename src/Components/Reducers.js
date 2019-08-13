@@ -1,5 +1,5 @@
 import { SORTED_BY } from "./Constants.js";
-import actions from "./Actions";
+import { actionTypes } from "./Actions";
     
 const reducer = (state, action) => {
   return {
@@ -16,7 +16,7 @@ const reducer = (state, action) => {
 
 const sortByReducer = (state, action) => {
   switch(action.type){
-    case actions.CHANGE_SORTING:
+    case actionTypes.CHANGE_SORTING:
       return action.payload;
     default:
       return state.sortBy;
@@ -25,7 +25,7 @@ const sortByReducer = (state, action) => {
 
 const initialReducer = (state, action) => {
   switch (action.type){
-    case actions.SET_INITIAL_DATA:
+    case actionTypes.SET_INITIAL_DATA:
       return {
         allCountries: action.payload.countries,
         regionsMapping: action.payload.regionsMapping
@@ -39,15 +39,15 @@ const initialReducer = (state, action) => {
 
 const filteredCountriesReducer = (state, action) => {
   switch(action.type){
-    case actions.SET_INITIAL_DATA:
+    case actionTypes.SET_INITIAL_DATA:
       return {
         currentQuery: "",
         filteredCountries: action.payload.countries,
         isSearched: false
       }
-    case actions.SEARCH:
+    case actionTypes.SEARCH:
       return search(state, action.payload);
-    case actions.SORT:
+    case actionTypes.SORT:
       return {
         currentQuery: state.search.currentQuery,
         filteredCountries: sortCountries(state.search.filteredCountries, state.sortBy),
@@ -60,7 +60,7 @@ const filteredCountriesReducer = (state, action) => {
 
 const sovereignStateFilterReducer = (state, action) => {
   switch(action.type){
-    case actions.SWAP_SOVEREIGN_STATES_FILTER:
+    case actionTypes.SWAP_SOVEREIGN_STATES_FILTER:
       return !state.filters.sovereignStates
     default:
       return state.filters.sovereignStates
@@ -69,7 +69,7 @@ const sovereignStateFilterReducer = (state, action) => {
 
 const regionFilterReducer = (state, action) => {
   switch(action.type){
-    case actions.CHANGE_REGION_FILTER:
+    case actionTypes.CHANGE_REGION_FILTER:
       return action.payload;
     default:
       return state.filters.region;
@@ -78,7 +78,7 @@ const regionFilterReducer = (state, action) => {
 
 const subregionFilterReducer = (state, action) => {
   switch(action.type){
-    case actions.CHANGE_SUBREGION_FILTER:
+    case actionTypes.CHANGE_SUBREGION_FILTER:
       return action.payload;
     default:
       return state.filters.subregion;
@@ -86,7 +86,6 @@ const subregionFilterReducer = (state, action) => {
 }
 
 const sortCountries = (countries, sortBy) => {
-  debugger;
   switch(sortBy){
     case SORTED_BY.ALPHABETICAL:
       return sortAlphabetical(countries);
