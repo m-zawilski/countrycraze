@@ -19,8 +19,8 @@ const AppContainer = styled.div`
 function App() {
   return (
     <AppContainer>
-      <Route exact path="/" component={MainPage}/>
-      <Route path="/page/:apiName" component={CountryPage}/>
+      <Route exact path="/countrycraze" component={MainPage}/>
+      <Route path="/countrycraze/page/:apiName" component={CountryPage}/>
     </AppContainer>
   );
 }

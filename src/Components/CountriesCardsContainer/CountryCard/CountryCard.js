@@ -88,7 +88,7 @@ function CountryCard(props) {
   const { country } = props;
   return (
     <Card>
-      <Link to={`/page/${country.apiName}`} style={{ color: 'inherit', textDecoration: 'inherit'}}>
+      <Link to={`/countrycraze/page/${country.apiName}`} style={{ color: 'inherit', textDecoration: 'inherit'}}>
         <CardHeader region={country.region}>
           <CardTitle
               mainLength={country.name.length}

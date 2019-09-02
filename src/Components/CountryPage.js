@@ -31,7 +31,7 @@ function CountryPage({match}) {
       <p>
         {country.region}
       </p>
-      <Link to="/">Back</Link>
+      <Link to="/countrycraze">Back</Link>
     </div>
   ) : null;
 }
