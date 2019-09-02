@@ -6,6 +6,7 @@ const RegionSelect = styled.select`
   text-align-last: center;
   margin: 3px;
   cursor: pointer;
+  background: white;
 `
 
 const RegionSelector = (props) => {

@@ -18,13 +18,19 @@ const SearchContainer = styled.div`
   border-bottom: 1px solid #000;
 `
 
+ const InnerSearchContainer = styled.div`
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+ `
+
 function Search(props) {
   const [ subregions, setSubregions ] = useState([""]);
   const [ selectedSubregion, setSelectedSubregion ] = useState("");
   return (
     <SearchContainer>
       <Searchbar search={props.search}/>
-      <div>
+      <InnerSearchContainer>
         <RegionSelector
           regionsMapping={props.regionsMapping}
           setSubregions={setSubregions}
@@ -39,7 +45,7 @@ function Search(props) {
           subregions={subregions}
         />
         <SovereignFilter swapSovereignStates={props.swapSovereignStates}/>
-      </div>
+      </InnerSearchContainer>
       <SortingSelectors changeSorting={props.changeSorting}/>
     </SearchContainer>
   )

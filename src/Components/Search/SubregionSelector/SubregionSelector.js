@@ -6,6 +6,7 @@ const SubregionSelect = styled.select`
   text-align-last: center;
   margin: 3px;
   cursor: pointer;
+  background: white;
 `
 function SubregionSelector(props) {
   return (

@@ -10,6 +10,7 @@ const SelectorLabel = styled.label`
 const SortingSelectorsContainer = styled.div`
   display: flex;
   flex-direction: row;
+  flex-wrap: wrap;
 `
 
 const SelectorContainer = styled.div`

@@ -143,7 +143,7 @@ const search = (state, currentQuery = "") => {
     }
   } 
   return {
-    currentQuery: state.search.currentQuery,
+    currentQuery: currentQuery,
     filteredCountries: state.initial.allCountries,
     isSearched: false
   };
