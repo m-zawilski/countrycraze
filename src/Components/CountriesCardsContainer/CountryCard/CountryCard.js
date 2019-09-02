@@ -1,6 +1,7 @@
 import React from "react"
 import styled from "styled-components";
 import { lighten, darken } from "polished";
+import { Link } from "react-router-dom";
 
 const REGION_COLORS = {
   "Africa": "#9f5338",
@@ -87,26 +88,28 @@ function CountryCard(props) {
   const { country } = props;
   return (
     <Card>
-      <CardHeader region={country.region}>
-        <CardTitle
-            mainLength={country.name.length}
-            secondaryLength={country.nativeName.length}
-        >
-          <h2 className="name">{country.name}</h2>
-          <p className="native-name">{country.nativeName}</p>
-        </CardTitle>
-        <Flag 
-          src={country.flag} 
-          alt={`${country.name} flag`
-        }/>
-      </CardHeader>
-      <CardBody>
-        <p><strong>Capital city:</strong> {country.capital ? country.capital : "-"}</p>
-        <p><strong>Region:</strong> {country.region ? country.region : "-"}</p>
-        <p><strong>Subregion:</strong> {country.subregion ? country.subregion : "-"}</p>
-        <p><strong>Population:</strong> {country.population ? putCommas(country.population) : "0"}</p>
-        {country.area ? <p><strong>Area:</strong>{` ${putCommas(country.area)} km²`}</p> : null}
-      </CardBody>
+      <Link to={`/page/${country.apiName}`} style={{ color: 'inherit', textDecoration: 'inherit'}}>
+        <CardHeader region={country.region}>
+          <CardTitle
+              mainLength={country.name.length}
+              secondaryLength={country.nativeName.length}
+          >
+            <h2 className="name">{country.name}</h2>
+            <p className="native-name">{country.nativeName}</p>
+          </CardTitle>
+          <Flag 
+            src={country.flag} 
+            alt={`${country.name} flag`
+          }/>
+        </CardHeader>
+        <CardBody>
+          <p><strong>Capital city:</strong> {country.capital ? country.capital : "-"}</p>
+          <p><strong>Region:</strong> {country.region ? country.region : "-"}</p>
+          <p><strong>Subregion:</strong> {country.subregion ? country.subregion : "-"}</p>
+          <p><strong>Population:</strong> {country.population ? putCommas(country.population) : "0"}</p>
+          {country.area ? <p><strong>Area:</strong>{` ${putCommas(country.area)} km²`}</p> : null}
+        </CardBody>
+      </Link>
     </Card>
   )
 }

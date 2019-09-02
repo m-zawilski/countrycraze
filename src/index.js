@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom';
 import App from './Components/App';
 import * as serviceWorker from './serviceWorker';
 import { createGlobalStyle } from "styled-components";
+import { BrowserRouter } from "react-router-dom";
 
 const GlobalStyle = createGlobalStyle`
   body {
@@ -11,10 +12,10 @@ const GlobalStyle = createGlobalStyle`
 `
 
 ReactDOM.render(
-  <>
+  <BrowserRouter>
     <GlobalStyle/>
     <App />
-  </>
+  </BrowserRouter>
 , document.getElementById('root'));
 
 // If you want your app to work offline and load faster, you can change

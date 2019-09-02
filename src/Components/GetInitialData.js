@@ -73,6 +73,7 @@ const assignOfficiallyRecognized = (listOfCountries) => {
 
 const normalizeNames = (listOfCountries, dictionary) => {
   return listOfCountries.map((country) => {
+    country = Object.assign({}, country, {apiName: country.name})
     for (let entry of dictionary) {
       if (entry[0] === country.name) {
         return Object.assign({}, country, {name: entry[1]});
