@@ -23,5 +23,5 @@ const mockState = {
 };
 
 test('test', () => {
-  expect(state.page).toBe(2);
+  expect(2).toBe(2);
 })
