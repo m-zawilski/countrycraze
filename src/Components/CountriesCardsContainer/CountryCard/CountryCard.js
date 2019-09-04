@@ -2,16 +2,7 @@ import React from "react"
 import styled from "styled-components";
 import { lighten, darken } from "polished";
 import { Link } from "react-router-dom";
-
-const REGION_COLORS = {
-  "Africa": "#9f5338",
-  "Americas": "#8b5dd4",
-  "Asia": "#398f0f",
-  "Europe": "#464cd7",
-  "Oceania": "#66ced0",
-  "Polar": "#3f8374",
-  "": "#b0b0b0"
-}
+import { REGION_COLORS } from "../../Constants";
 
 const Card = styled.div`
   width: 220px;
@@ -88,7 +79,10 @@ function CountryCard(props) {
   const { country } = props;
   return (
     <Card>
-      <Link to={`/countrycraze/page/${country.apiName}`} style={{ color: 'inherit', textDecoration: 'inherit'}}>
+      <Link 
+        to={`/countrycraze/page/${country.apiName}`} 
+        style={{ color: 'inherit', textDecoration: 'inherit'}
+      }>
         <CardHeader region={country.region}>
           <CardTitle
               mainLength={country.name.length}

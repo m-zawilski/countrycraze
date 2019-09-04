@@ -12,6 +12,14 @@ const CardsContainer = styled.div`
   margin: 0;
 `
 
+const ResultsContainer = styled.div`
+  background-color: #fff;
+  width: 100vw;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+`
+
 function CountriesCardsContainer(props) {
   const [pageResultsSize, setPageResultsSize] = useState(20);
 
@@ -22,7 +30,7 @@ function CountriesCardsContainer(props) {
   }
 
   return (
-    <>
+    <ResultsContainer>
       <PaginationButtons
         pagesCount={Math.ceil(props.countries.length/pageResultsSize)}
         page={props.page}
@@ -43,7 +51,7 @@ function CountriesCardsContainer(props) {
         page={props.page}
         setPage={props.setPage}
       />
-    </>
+    </ResultsContainer>
   )
 }
     

@@ -12,9 +12,9 @@ const SearchContainer = styled.div`
   background: lightblue;
   width: 100%;
   align-items: center;
-  padding: 10px;
+  padding: 10px 10px 10px 10px;
   position: sticky;
-  top: 0;
+  top: 0px;
   border-bottom: 1px solid #000;
 `
 

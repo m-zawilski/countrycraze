@@ -8,6 +8,7 @@ import { BrowserRouter } from "react-router-dom";
 const GlobalStyle = createGlobalStyle`
   body {
     margin: 0;
+    background: lightblue;
   }
 `
 

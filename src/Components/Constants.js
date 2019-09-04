@@ -213,7 +213,7 @@ const SOVEREIGN_STATES = [
   "Zimbabwe"
 ]
 
-const NORMALIZE_NAMES_DICTIONARY = [
+const NAME_NORMALIZATION_DICTIONARY = [
   ["Åland Islands", "Aland Islands"],
   ["Bolivia (Plurinational State of)", "Bolivia"],
   ["Cocos (Keeling) Islands", "Cocos Islands"],
@@ -241,7 +241,18 @@ const NORMALIZE_NAMES_DICTIONARY = [
   ["Viet Nam", "Vietnam"]
 ]
 
+const REGION_COLORS = {
+  "Africa": "#9f5338",
+  "Americas": "#8b5dd4",
+  "Asia": "#398f0f",
+  "Europe": "#464cd7",
+  "Oceania": "#66ced0",
+  "Polar": "#3f8374",
+  "": "#b0b0b0"
+}
+
 export {
   SOVEREIGN_STATES,
-  NORMALIZE_NAMES_DICTIONARY
+  NAME_NORMALIZATION_DICTIONARY,
+  REGION_COLORS
 }

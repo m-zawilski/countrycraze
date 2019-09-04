@@ -1,10 +1,10 @@
-import { SOVEREIGN_STATES, NORMALIZE_NAMES_DICTIONARY } from "./Constants";
+import { SOVEREIGN_STATES, NAME_NORMALIZATION_DICTIONARY } from "./Constants";
 
 async function getInitialData(){
   const resp = await fetch("https://restcountries.eu/rest/v2/all");
   const data = await resp.json();
   let listOfCountries = assignOfficiallyRecognized(data);
-  listOfCountries = normalizeNames(listOfCountries, NORMALIZE_NAMES_DICTIONARY);
+  listOfCountries = normalizeNames(listOfCountries, NAME_NORMALIZATION_DICTIONARY);
   let regionsMapping = getMapping(listOfCountries, "region", ["subregion"]);
   return {
     countries: listOfCountries,
