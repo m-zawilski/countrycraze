@@ -23,6 +23,5 @@ const mockState = {
 };
 
 test('test', () => {
-  dispatch(actions.changePage(2))
   expect(state.page).toBe(2);
 })
