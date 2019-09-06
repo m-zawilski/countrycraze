@@ -3,7 +3,7 @@ import CountryCard from "./CountryCard/CountryCard";
 import styled from "styled-components";
 import PaginationButtons from "./PaginationButtons/PaginationButtons";
 
-const CardsContainer = styled.div`
+const CardsDiv = styled.div`
   display: flex;
   max-width: 960px;
   flex-wrap: wrap;
@@ -12,7 +12,7 @@ const CardsContainer = styled.div`
   margin: 0;
 `
 
-const ResultsContainer = styled.div`
+const Div = styled.div`
   background-color: #fff;
   width: 100vw;
   display: flex;
@@ -30,13 +30,13 @@ function CountriesCardsContainer(props) {
   }
 
   return (
-    <ResultsContainer>
+    <Div>
       <PaginationButtons
         pagesCount={Math.ceil(props.countries.length/pageResultsSize)}
         page={props.page}
         setPage={props.setPage}
       />
-      <CardsContainer>
+      <CardsDiv>
         {props.countries.map((country, i) => {
           return (i < props.page * pageResultsSize && i >= (props.page - 1) * pageResultsSize ) ? (
               <CountryCard 
@@ -45,13 +45,13 @@ function CountriesCardsContainer(props) {
               />
             ) : null;
         })}
-      </CardsContainer>
+      </CardsDiv>
       <PaginationButtons
         pagesCount={Math.ceil(props.countries.length/pageResultsSize)}
         page={props.page}
         setPage={props.setPage}
       />
-    </ResultsContainer>
+    </Div>
   )
 }
     

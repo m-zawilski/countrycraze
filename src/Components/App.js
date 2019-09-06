@@ -5,7 +5,7 @@ import { Route } from "react-router-dom";
 import MainPage from "./MainPage";
 import CountryPage from "./CountryPage";
 
-const AppContainer = styled.div`
+const Div = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -18,10 +18,10 @@ const AppContainer = styled.div`
 
 function App() {
   return (
-    <AppContainer>
+    <Div>
       <Route exact path="/countrycraze" component={MainPage}/>
       <Route path="/countrycraze/page/:apiName" component={CountryPage}/>
-    </AppContainer>
+    </Div>
   );
 }
 

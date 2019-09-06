@@ -22,7 +22,7 @@ const Flag = styled.img`
   height: 40px;
 `
 
-const CardHeader = styled.div`
+const HeaderDiv = styled.div`
   display: flex;
   width: 100%;
   height: 25%;
@@ -41,7 +41,7 @@ const CardHeader = styled.div`
   align-items: center;
 `
 
-const CardTitle = styled.div`
+const TitleDiv = styled.div`
   display: flex;
   flex-direction: column;
   margin-right: 10px;
@@ -55,7 +55,7 @@ const CardTitle = styled.div`
   }
 `
 
-const CardBody = styled.div`
+const BodyDiv = styled.div`
   display: flex;
   height: 75%;
   flex-direction: column;
@@ -83,26 +83,26 @@ function CountryCard(props) {
         to={`/countrycraze/page/${country.apiName}`} 
         style={{ color: 'inherit', textDecoration: 'inherit'}
       }>
-        <CardHeader region={country.region}>
-          <CardTitle
+        <HeaderDiv region={country.region}>
+          <TitleDiv
               mainLength={country.name.length}
               secondaryLength={country.nativeName.length}
           >
             <h2 className="name">{country.name}</h2>
             <p className="native-name">{country.nativeName}</p>
-          </CardTitle>
+          </TitleDiv>
           <Flag 
             src={country.flag} 
             alt={`${country.name} flag`
           }/>
-        </CardHeader>
-        <CardBody>
+        </HeaderDiv>
+        <BodyDiv>
           <p><strong>Capital city:</strong> {country.capital ? country.capital : "-"}</p>
           <p><strong>Region:</strong> {country.region ? country.region : "-"}</p>
           <p><strong>Subregion:</strong> {country.subregion ? country.subregion : "-"}</p>
           <p><strong>Population:</strong> {country.population ? putCommas(country.population) : "0"}</p>
           {country.area ? <p><strong>Area:</strong>{` ${putCommas(country.area)} km²`}</p> : null}
-        </CardBody>
+        </BodyDiv>
       </Link>
     </Card>
   )

@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from "styled-components";
 
-const PaginationButtonsContainer = styled.div`
+const PaginationButtonsDiv = styled.div`
   margin: 15px 0;
 `
 
@@ -48,9 +48,9 @@ const isCorner = (number, maxNumber) => {
 
 function PaginationButtons(props) {
   return (
-    <PaginationButtonsContainer>
+    <PaginationButtonsDiv>
       {getPaginationButtons(props.pagesCount, props.setPage, props.page)}
-    </PaginationButtonsContainer>
+    </PaginationButtonsDiv>
   )
 }
 

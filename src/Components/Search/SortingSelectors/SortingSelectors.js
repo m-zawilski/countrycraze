@@ -7,13 +7,13 @@ const SelectorLabel = styled.label`
   margin: 0 5px 0 1px;
 `
 
-const SortingSelectorsContainer = styled.div`
+const SelectorsDiv = styled.div`
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
 `
 
-const SelectorContainer = styled.div`
+const Div = styled.div`
   cursor: pointer;
   * {
     cursor: pointer;
@@ -24,11 +24,11 @@ function SortingSelectors(props) {
   const [selectedFilter, setSelectedFilter] = useState(SORTED_BY.ALPHABETICAL);
 
   return ( 
-    <SortingSelectorsContainer>
+    <SelectorsDiv>
       {
         Object.keys(SORTED_BY).map((sorting, i) => {
           return (
-            <SelectorContainer  
+            <Div  
               onClick={e => {
                 props.changeSorting(sorting);
                 setSelectedFilter(sorting);
@@ -45,11 +45,11 @@ function SortingSelectors(props) {
               <SelectorLabel>
                 {sorting.charAt(0) + sorting.slice(1).toLowerCase().replace("_", " ")}
               </SelectorLabel>
-            </SelectorContainer>
+            </Div>
           )
         })
       }
-    </SortingSelectorsContainer>
+    </SelectorsDiv>
   )
 }
 

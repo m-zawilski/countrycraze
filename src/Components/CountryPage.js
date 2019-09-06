@@ -3,16 +3,34 @@ import { Link } from 'react-router-dom';
 import { NAME_NORMALIZATION_DICTIONARY } from './Constants';
 import styled from 'styled-components';
 
+const widthChange = "750px";
+
 const Div = styled.div`
   display: flex;
-  justify-content: space-around;
-  width: 80%;
+  flex-direction: column;
+  align-items: center;
+  width: 90%;
+  max-width: 1080px;
+  margin: 0;
+
+  @media (min-width: ${widthChange}) {
+    align-items: flex-start;
+    justify-content: space-around;
+    flex-direction: row;
+    margin: 10px 0;
+  }
 `
 
 const Column = styled.div`
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
+  width: 90%;
+  margin: 0;
+
+  @media (min-width: ${widthChange}) {
+    width: 30%;
+    margin: 10px 0;
+  }
 `
 
 const Card = styled.div`
@@ -20,10 +38,17 @@ const Card = styled.div`
   flex-direction: column;
   background-color: white;
   box-shadow: 1px 1px 2px #000;
+  margin: 10px 0;
 `
 
 const Flag = styled.img`
-  width: 200px;
+  width: 100%;
+  margin: 10px 0;
+  order: 1;
+
+  @media (min-width: ${widthChange}) {
+    order: 0;
+  }
 `
 
 function CountryPage({match}) {
@@ -62,6 +87,7 @@ function CountryPage({match}) {
 
   return country ? (
     <>
+      <Link to="/countrycraze">Back</Link>
       <Div>
         <Column>
           <Card>
@@ -109,16 +135,21 @@ function CountryPage({match}) {
             }, "")}</p>
           </Card>
           <Card>
-            {Object.values(country.translations).map((el) => {
-              return <p>{el}</p>
+            {Object.values(country.translations).map((el, i) => {
+              return <p key={i}>{el}</p>
             })}
           </Card>
         </Column>
         <Column>
-          <Flag src={country.flag}/>      
+          <Flag src={country.flag}/>  
+          <Card>
+            Place for weather API Card
+          </Card>
+          <Card>
+            Place for twitter API Card
+          </Card>
         </Column>
       </Div>
-      <Link to="/countrycraze">Back</Link>
     </>
   ) : null;
 }

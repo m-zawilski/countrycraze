@@ -6,7 +6,7 @@ import SovereignFilter from "./SovereignFilter/SovereignFilter";
 import Searchbar from "./Searchbar/Searchbar";
 import styled from "styled-components";
 
-const SearchContainer = styled.div`
+const Div = styled.div`
   display: flex;
   flex-direction: column;
   background: lightblue;
@@ -18,7 +18,7 @@ const SearchContainer = styled.div`
   border-bottom: 1px solid #000;
 `
 
- const InnerSearchContainer = styled.div`
+ const FiltersDiv = styled.div`
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
@@ -28,9 +28,9 @@ function Search(props) {
   const [ subregions, setSubregions ] = useState([""]);
   const [ selectedSubregion, setSelectedSubregion ] = useState("");
   return (
-    <SearchContainer>
+    <Div>
       <Searchbar search={props.search}/>
-      <InnerSearchContainer>
+      <FiltersDiv>
         <RegionSelector
           regionsMapping={props.regionsMapping}
           setSubregions={setSubregions}
@@ -45,9 +45,9 @@ function Search(props) {
           subregions={subregions}
         />
         <SovereignFilter swapSovereignStates={props.swapSovereignStates}/>
-      </InnerSearchContainer>
+      </FiltersDiv>
       <SortingSelectors changeSorting={props.changeSorting}/>
-    </SearchContainer>
+    </Div>
   )
 }
 
