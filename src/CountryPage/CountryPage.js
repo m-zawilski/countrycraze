@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
-import { NAME_NORMALIZATION_DICTIONARY } from './Constants';
+import { NAME_NORMALIZATION_DICTIONARY } from '../Common/Constants';
 import styled from 'styled-components';
 
 const widthChange = "750px";
@@ -54,18 +54,6 @@ const Flag = styled.img`
 function CountryPage({match}) {
   let [ country, setCountry ] = useState(null);
 
-  async function getCountryData(){
-    const resp = await fetch(`https://restcountries.eu/rest/v2/name/${match.params.apiName}`);
-    const data = await resp.json();
-    return data.reduce((neededCountry, country) => {
-      if(country.name === match.params.apiName){
-        return country;
-      } else {
-        return neededCountry;
-      }
-    }, "");
-  }
-
   const normalizeName = (country, dictionary) => {
     for (let entry of dictionary) {
       if (entry[0] === country.name) {
@@ -76,6 +64,12 @@ function CountryPage({match}) {
   }
 
   useEffect(() => {
+    async function getCountryData(){
+      const resp = await fetch(`https://restcountries.eu/rest/v2/alpha/${match.params.alpha3Code}`);
+      const data = await resp.json();
+      return data;
+    }
+
     getCountryData().then((country) => {
       setCountry(normalizeName(country, NAME_NORMALIZATION_DICTIONARY));
     }
@@ -83,7 +77,7 @@ function CountryPage({match}) {
       console.log(error);
       return <p>There was an error while downloading the data.</p>
     })
-  }, [getCountryData])
+  }, [match.params.alpha3Code])
 
   return country ? (
     <>

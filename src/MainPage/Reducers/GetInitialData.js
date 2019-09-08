@@ -1,4 +1,4 @@
-import { SOVEREIGN_STATES, NAME_NORMALIZATION_DICTIONARY } from "./Constants";
+import { SOVEREIGN_STATES, NAME_NORMALIZATION_DICTIONARY } from "../../Common/Constants";
 
 async function getInitialData(){
   const resp = await fetch("https://restcountries.eu/rest/v2/all");

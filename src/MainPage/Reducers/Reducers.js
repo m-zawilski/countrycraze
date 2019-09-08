@@ -1,5 +1,5 @@
-import { SORTED_BY, INITIAL_PAGE } from "./Constants.js";
-import { actionTypes } from "./Actions";
+import { SORTED_BY, INITIAL_PAGE } from "../../Common/Constants";
+import { actionTypes } from "../Actions/Actions";
     
 const reducer = (state, action) => {
   return {

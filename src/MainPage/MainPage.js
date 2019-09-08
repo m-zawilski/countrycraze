@@ -1,10 +1,10 @@
 import React, { useEffect, useReducer } from 'react';
-import getInitialData from "./GetInitialData";
-import { SORTED_BY, INITIAL_PAGE } from "./Constants.js";
-import reducer from "./Reducers.js";
-import actions from "./Actions.js";
-import Search from "./Search/Search";
-import CountriesCardsContainer from "./CountriesCardsContainer/CountriesCardsContainer";
+import getInitialData from "./Reducers/GetInitialData";
+import { SORTED_BY, INITIAL_PAGE } from "../Common/Constants.js";
+import reducer from "./Reducers/Reducers.js";
+import actions from "./Actions/Actions.js";
+import Search from "./Components/Search/Search";
+import CountriesCardsContainer from "./Components/Results/Results";
 
 function MainPage() {
   const [state, dispatch] = useReducer(reducer, {

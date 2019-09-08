@@ -1,9 +1,9 @@
 import React from 'react';
 import { shallow } from 'enzyme';
-import CountriesCardsContainer from './CountriesCardsContainer';
+import Results from './Results';
 
 it('renders without crashing', () => {
-  expect(shallow(<CountriesCardsContainer
+  expect(shallow(<Results
     countries={[]}
   />)).toMatchSnapshot();
 });

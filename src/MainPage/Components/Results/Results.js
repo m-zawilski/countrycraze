@@ -20,7 +20,7 @@ const Div = styled.div`
   align-items: center;
 `
 
-function CountriesCardsContainer(props) {
+function Results(props) {
   const [pageResultsSize, setPageResultsSize] = useState(20);
 
   if(props.countries.length === 0){
@@ -55,4 +55,4 @@ function CountriesCardsContainer(props) {
   )
 }
     
-export default CountriesCardsContainer;
+export default Results;

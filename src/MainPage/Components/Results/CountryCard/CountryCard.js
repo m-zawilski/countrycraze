@@ -2,7 +2,7 @@ import React from "react"
 import styled from "styled-components";
 import { lighten, darken } from "polished";
 import { Link } from "react-router-dom";
-import { REGION_COLORS } from "../../Constants";
+import { REGION_COLORS } from "../../../../Common/Constants";
 
 const Card = styled.div`
   width: 220px;
@@ -80,7 +80,7 @@ function CountryCard(props) {
   return (
     <Card>
       <Link 
-        to={`/countrycraze/page/${country.apiName}`} 
+        to={`/countrycraze/page/${country.alpha3Code}`} 
         style={{ color: 'inherit', textDecoration: 'inherit'}
       }>
         <HeaderDiv region={country.region}>

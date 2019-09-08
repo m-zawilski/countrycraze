@@ -1,7 +1,7 @@
 import reducer from './Reducers';
 import { useReducer } from 'react';
-import * as actions from './Actions';
-import { SORTED_BY, INITIAL_PAGE } from './Constants';
+import * as actions from '../Actions/Actions';
+import { SORTED_BY, INITIAL_PAGE } from '../../Common/Constants';
 
 const mockState = {
   initial: {
