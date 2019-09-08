@@ -2,6 +2,13 @@ import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { NAME_NORMALIZATION_DICTIONARY } from '../Common/Constants';
 import styled from 'styled-components';
+import MainCard from './Cards/MainCard';
+import StatisticsCard from './Cards/StatisticsCard';
+import CodesCard from './Cards/CodesCard';
+import AccordionCard from './Cards/AccordionCard';
+import WeatherApiCard from './Cards/WeatherApiCard';
+import TwitterApiCard from './Cards/TwitterApiCard';
+import LanguagesCard from './Cards/LanguagesCard';
 
 const widthChange = "750px";
 
@@ -31,14 +38,6 @@ const Column = styled.div`
     width: 30%;
     margin: 10px 0;
   }
-`
-
-const Card = styled.div`
-  display: flex;
-  flex-direction: column;
-  background-color: white;
-  box-shadow: 1px 1px 2px #000;
-  margin: 10px 0;
 `
 
 const Flag = styled.img`
@@ -84,64 +83,18 @@ function CountryPage({match}) {
       <Link to="/countrycraze">Back</Link>
       <Div>
         <Column>
-          <Card>
-            <p>{country.name}</p>
-            <p>{country.nativeName}</p>
-            <p>{Object.values(country.altSpellings).reduce((acc, el) => {
-              return acc + el + " ";
-            }, "")}</p>
-            <p>{`${country.alpha2Code} ${country.alpha3Code} ${country.cioc} ${country.numericCode}`}</p>
-            <p>{country.region}</p>
-            <p>{country.subregion}</p>
-            <p>{country.capital}</p>
-            <p>{Object.values(country.borders).reduce((acc, el) => {
-              return acc + el + " ";
-            }, "")}</p>
-          </Card>
-          <Card>
-            <p>{country.area}</p>
-            <p>{country.population}</p>
-            <p>{(country.population/country.area).toFixed(2)}</p>
-          </Card>
-          <Card>
-            <p>{country.demonym}</p>
-            <p>{Object.values(country.topLevelDomain).reduce((acc, el) => {
-              return acc + el + " ";
-            }, "")}</p>
-            <p>{Object.values(country.callingCodes).reduce((acc, el) => {
-              return acc + el + " ";
-            }, "")}</p>
-            <p>{Object.values(country.timezones).reduce((acc, el) => {
-              return acc + el + " ";
-            }, "")}</p>
-          </Card>
+          <MainCard country={country}/>
+          <StatisticsCard country={country}/>
+          <CodesCard country={country}/>
         </Column>
         <Column>
-          <Card>
-            <p>{Object.values(country.regionalBlocs).reduce((acc, el) => {
-              return acc + el + " ";
-            }, "")}</p>
-            <p>{Object.values(country.currencies).reduce((acc, el) => {
-              return acc + el + " ";
-            }, "")}</p>
-            <p>{Object.values(country.languages).reduce((acc, el) => {
-              return acc + el + " ";
-            }, "")}</p>
-          </Card>
-          <Card>
-            {Object.values(country.translations).map((el, i) => {
-              return <p key={i}>{el}</p>
-            })}
-          </Card>
+          <AccordionCard country={country}/>
+          <LanguagesCard country={country}/>
         </Column>
         <Column>
           <Flag src={country.flag}/>  
-          <Card>
-            Place for weather API Card
-          </Card>
-          <Card>
-            Place for twitter API Card
-          </Card>
+          {/* <WeatherApiCard/>
+          <TwitterApiCard/> */}
         </Column>
       </Div>
     </>
