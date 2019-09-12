@@ -20,7 +20,7 @@ function App() {
   return (
     <Div>
       <Route exact path="/countrycraze" component={MainPage}/>
-      <Route path="/countrycraze/page/:alpha3Code" component={CountryPage}/>
+      <Route path="/countrycraze/country/:alpha3Code" component={CountryPage}/>
     </Div>
   );
 }

@@ -80,7 +80,7 @@ function CountryCard(props) {
   return (
     <Card>
       <Link 
-        to={`/countrycraze/page/${country.alpha3Code}`} 
+        to={`/countrycraze/country/${country.alpha3Code}`} 
         style={{ color: 'inherit', textDecoration: 'inherit'}
       }>
         <HeaderDiv region={country.region}>

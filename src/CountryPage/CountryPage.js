@@ -64,21 +64,19 @@ function CountryPage({match}) {
 
   useEffect(() => {
     async function getCountryData(){
-      const resp = await fetch(`https://restcountries.eu/rest/v2/alpha/${match.params.alpha3Code}`);
+      const resp = await fetch(`${process.env.REACT_APP_MOCK_URL}/rest/v2/alpha/${match.params.alpha3Code}`);
       const data = await resp.json();
       return data;
     }
 
     getCountryData().then((country) => {
       setCountry(normalizeName(country, NAME_NORMALIZATION_DICTIONARY));
-    }
-    ).catch((error) => {
-      console.log(error);
-      return <p>There was an error while downloading the data.</p>
+    }).catch((er) => {
+      console.log(er.response);
     })
   }, [match.params.alpha3Code])
 
-  return country ? (
+  return (country && country.name) ? (
     <>
       <Link to="/countrycraze">Back</Link>
       <Div>
