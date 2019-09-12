@@ -1,7 +1,11 @@
 import { SOVEREIGN_STATES, NAME_NORMALIZATION_DICTIONARY } from "../../Common/Constants";
 
 async function getInitialData(){
-  const resp = await fetch(`${process.env.REACT_APP_MOCK_URL}/rest/v2/all`);
+  const resp = await fetch(
+    process.env.REACT_APP_MOCK_URL ? 
+    `${process.env.REACT_APP_MOCK_URL}/rest/v2/all` : 
+    `https://restcountries.eu/rest/v2/all`
+  );
   const data = await resp.json();
   let listOfCountries = assignOfficiallyRecognized(data);
   listOfCountries = normalizeNames(listOfCountries, NAME_NORMALIZATION_DICTIONARY);
