@@ -2,8 +2,8 @@ import { SOVEREIGN_STATES, NAME_NORMALIZATION_DICTIONARY } from "../../Common/Co
 
 async function getInitialData(){
   const resp = await fetch(
-    process.env.REACT_APP_MOCK_URL ? 
-    `${process.env.REACT_APP_MOCK_URL}/rest/v2/all` : 
+    // process.env.REACT_APP_MOCK_URL ? 
+    // `${process.env.REACT_APP_MOCK_URL}/rest/v2/all` : 
     `https://restcountries.eu/rest/v2/all`
   );
   const data = await resp.json();

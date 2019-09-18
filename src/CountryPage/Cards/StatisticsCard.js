@@ -4,10 +4,10 @@ import Card from './Card';
 function StatisticsCard({country}) {
   return (
     <Card>
-      <h2>Statistics</h2>
-      <p>{country.area}</p>
-      <p>{country.population}</p>
-      <p>{(country.population/country.area).toFixed(2)}</p>
+      <h3>Statistics</h3>
+      <p><span>Area</span> {country.area}</p>
+      <p><span>Population</span> {country.population}</p>
+      <p><span>Population density</span> {(country.population/country.area).toFixed(2)}</p>
     </Card>
   )
 }

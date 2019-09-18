@@ -65,8 +65,8 @@ function CountryPage({match}) {
   useEffect(() => {
     async function getCountryData(){
       const resp = await fetch(
-        process.env.REACT_APP_MOCK_URL ? 
-        `${process.env.REACT_APP_MOCK_URL}/rest/v2/alpha/${match.params.alpha3Code}` : 
+        // process.env.REACT_APP_MOCK_URL ? 
+        // `${process.env.REACT_APP_MOCK_URL}/rest/v2/alpha/${match.params.alpha3Code}` : 
         `https://restcountries.eu/rest/v2/alpha/${match.params.alpha3Code}`
       );
       const data = await resp.json();
