@@ -5,10 +5,14 @@ import styled from 'styled-components';
 import MainCard from './Cards/MainCard';
 import StatisticsCard from './Cards/StatisticsCard';
 import CodesCard from './Cards/CodesCard';
-import AccordionCard from './Cards/AccordionCard';
 import WeatherApiCard from './Cards/WeatherApiCard';
 import TwitterApiCard from './Cards/TwitterApiCard';
 import LanguagesCard from './Cards/LanguagesCard';
+import LanguageAccordionCard from './Cards/LanguageAccordionCard';
+import CurrencyAccordionCard from './Cards/CurrencyAccordionCard';
+import RegionalBlocAccordionCard from './Cards/RegionalBlocAccordionCard';
+import AlternativeSpellingsCard from './Cards/AlternativeSpellingsCard';
+import NeighboursCard from './Cards/NeighboursCard';
 
 const widthChange = "750px";
 
@@ -19,6 +23,14 @@ const Div = styled.div`
   width: 90%;
   max-width: 1080px;
   margin: 0;
+
+  * {
+    cursor: default;
+  }
+
+  a {
+    cursor: pointer;
+  }
 
   @media (min-width: ${widthChange}) {
     align-items: flex-start;
@@ -86,11 +98,15 @@ function CountryPage({match}) {
       <Div>
         <Column>
           <MainCard country={country}/>
+          <AlternativeSpellingsCard country={country}/>
+          <NeighboursCard country={country}/>
           <StatisticsCard country={country}/>
           <CodesCard country={country}/>
         </Column>
         <Column>
-          <AccordionCard country={country}/>
+          <LanguageAccordionCard country={country}/>
+          <CurrencyAccordionCard country={country}/>
+          <RegionalBlocAccordionCard country={country}/>
           <LanguagesCard country={country}/>
         </Column>
         <Column>

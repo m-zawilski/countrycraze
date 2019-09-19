@@ -14,15 +14,31 @@ function RegionalBlocsAccordion(props) {
         setActiveId={setActiveId}
         activeId={activeId}
       >
-        <p><span>Name</span> {currentBloc.name}</p>
+        <p>
+          <span className="left">Name</span> 
+          <span className="right">{currentBloc.name}</span>
+        </p>
         <EmptyCheck value={currentBloc.code}>
-          <p><span>Acronym</span> {currentBloc.code}</p>
+          <p>
+            <span className="left">Acronym</span> 
+            <span className="right">{currentBloc.code}</span>
+          </p>
         </EmptyCheck>
         <EmptyCheck value={currentBloc.otherNames}>
-          <p><span>Other names</span> {currentBloc.otherNames.map(n => n + ' ')}</p>
+          <p>
+            <span className="left">Other names</span> 
+            <div className="right">
+              {currentBloc.otherNames.map((el, i) => <p key={i}>{el}</p>)}
+            </div>
+          </p>
         </EmptyCheck>
         <EmptyCheck value={currentBloc.otherAcronyms}>
-          <p><span>Other acronyms</span> {currentBloc.otherAcronyms.map(n => n + ' ')}</p>
+          <p>
+            <span className="left">Other acronyms</span> 
+            <div className="right">
+              {currentBloc.otherAcronyms.map((el, i) => <p key={i}>{el}</p>)}
+            </div>
+          </p>
         </EmptyCheck>
       </Accordion>
     </>

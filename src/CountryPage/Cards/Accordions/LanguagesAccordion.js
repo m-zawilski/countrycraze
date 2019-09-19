@@ -13,9 +13,18 @@ function LanguagesAccordion(props) {
         setActiveId={setActiveId}
         activeId={activeId}
       >
-        <p><span>Name</span> {currentLanguage.name}</p>
-        <p><span>Native name</span> {currentLanguage.nativeName}</p>
-        <p><span>Codes</span> {currentLanguage.iso639_1} {currentLanguage.iso639_2}</p>
+        <p>
+          <span className="left">Name</span> 
+          <span className="right">{currentLanguage.name}</span>
+        </p>
+        <p>
+          <span className="left">Native name</span> 
+          <span className="right">{currentLanguage.nativeName}</span>
+        </p>
+        <p>
+          <span className="left">Codes</span> 
+          <span className="right">{currentLanguage.iso639_1} {currentLanguage.iso639_2}</span>
+        </p>
       </Accordion>
     </>
   )

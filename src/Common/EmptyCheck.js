@@ -2,7 +2,7 @@ import React from 'react'
 
 function EmptyCheck(props) {
   if(Array.isArray(props.value || 'string' === typeof props.value)){
-    return props.value.length > 0 ? 
+    return props.value.length > 0 && props.value[0] !== "" ? 
       <>{props.children}</>
     : null
   } else {

@@ -13,9 +13,18 @@ function CurrenciesAccordion(props) {
         setActiveId={setActiveId}
         activeId={activeId}
       >
-        <p><span>Name</span> {currentCurrency.name}</p>
-        <p><span>Code</span> {currentCurrency.code}</p>
-        <p><span>Symbol</span> {currentCurrency.symbol}</p>
+        <p>
+          <span className="left">Name</span> 
+          <span className="right">{currentCurrency.name}</span>
+        </p>
+        <p>
+          <span className="left">Code</span> 
+          <span className="right">{currentCurrency.code}</span>
+        </p>
+        <p>
+          <span className="left">Symbol</span> 
+          <span className="right">{currentCurrency.symbol}</span>
+        </p>
       </Accordion>
     </>
   )

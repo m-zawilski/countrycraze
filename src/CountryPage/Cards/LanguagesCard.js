@@ -1,5 +1,6 @@
 import React from 'react'
 import Card from './Card';
+import EmptyCheck from '../../Common/EmptyCheck';
 
 const languagesMap = [["de", "German"], ["es", "Spanish"], ["fr", "French"], ["ja", "Japanese"], ["it", "Italian"], 
   ["br", "Brazilian Portuguese"], ["pt", "Portuguese"], ["nl", "Dutch"], ["hr", "Serbo-Croatian"], ["fa", "Farsi"]]
@@ -14,12 +15,19 @@ const mapToLanguageName = (code) => {
 
 function LanguagesCard({country}) {
   return (
-    <Card>
-      <h3>Known as</h3>
-      {Object.values(country.translations).map((el, i) => {
-        return <p key={i}><span>{mapToLanguageName(Object.keys(country.translations)[i])}</span> {el}</p>
-      })}
-    </Card>
+    <EmptyCheck value={country.translations}>
+      <Card>
+        <h3>Translations</h3>
+        {Object.values(country.translations).map((el, i) => {
+          return <EmptyCheck value={el} key={i}>
+            <p>
+              <span className="left">{mapToLanguageName(Object.keys(country.translations)[i])}</span> 
+              <span className="right">{el}</span>
+            </p>
+          </EmptyCheck>
+        })}
+      </Card>
+    </EmptyCheck>
   )
 }
 

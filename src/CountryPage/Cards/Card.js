@@ -6,6 +6,43 @@ const Card = styled.div`
   background-color: white;
   box-shadow: 1px 1px 2px #000;
   margin: 10px 0;
+
+  h2, h3 {
+    padding: 20px;
+    width: 100%;
+    background: lightgray;
+    margin: 0;
+    text-align: center;
+  }
+
+  p {
+    border-top: 1px solid #aaa;
+    padding: 10px;
+    margin: 0;
+  }
+
+  .left {
+    float: left;
+    max-width: 35%;
+    text-align: left;
+    font-weight: bold;
+  }
+
+  .right {
+    float: right;
+    max-width: 60%;
+    text-align: right;
+  }
+
+  div.right > p {
+    border-top: none;
+    padding: 3px;
+  }
+
+  .center {
+    display: flex;
+    justify-content: center;
+  }
 `
 
 export default Card
