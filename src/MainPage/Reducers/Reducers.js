@@ -43,7 +43,7 @@ const filteredCountriesReducer = (state, action) => {
     case actionTypes.SET_INITIAL_DATA:
       return {
         currentQuery: "",
-        filteredCountries: action.payload.countries,
+        filteredCountries: filter(action.payload.countries, "", state.filters),
         isSearched: false
       }
     case actionTypes.SEARCH:

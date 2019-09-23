@@ -13,20 +13,23 @@ const CardsDiv = styled.div`
 `
 
 const Div = styled.div`
-  background-color: #fff;
-  width: 100vw;
+  width: 80vw;
   display: flex;
   flex-direction: column;
   align-items: center;
+`
+
+const P = styled.div`
+  color: white;
 `
 
 function Results(props) {
   const [pageResultsSize, setPageResultsSize] = useState(20);
 
   if(props.countries.length === 0){
-    return <p>
+    return <P>
       Sorry. Nothing was found. Change your search criteria.
-    </p>
+    </P>
   }
 
   return (

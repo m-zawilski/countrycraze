@@ -6,7 +6,10 @@ import actions from "./Actions/Actions.js";
 import Search from "./Components/Search/Search";
 import CountriesCardsContainer from "./Components/Results/Results";
 
-function MainPage() {
+function MainPage(params) {
+  const initialRegion = params.location.search ? params.location.search.split('region=')[1].split('&')[0] : "";
+  const initialSubregion = params.location.search && params.location.search.includes("subregion") ? 
+    params.location.search.replace('%20', ' ').split('=')[2] : "";
   const [state, dispatch] = useReducer(reducer, {
     initial: {
       allCountries: [],
@@ -19,8 +22,8 @@ function MainPage() {
     },
     filters: {
       sovereignStates: false,
-      region: "",
-      subregion: ""
+      region: initialRegion,
+      subregion: initialSubregion
     },
     sortedBy: SORTED_BY.ALPHABETICAL,
     page: INITIAL_PAGE
@@ -54,6 +57,13 @@ function MainPage() {
     dispatch(actions.changePage(number))
   }
 
+  const changeQueryParameters = (newQuery) => {
+    params.history.push({
+      pathname: '/countrycraze',
+      search: newQuery
+    })
+  }
+
   useEffect(() => {
     getInitialData().then((data) => 
       dispatch(actions.setInitialData(data))
@@ -76,12 +86,12 @@ function MainPage() {
         changeSubregionFilter={changeSubregionFilter}
         regionsMapping={state.initial.regionsMapping}
         changeSorting={changeSorting}
+        filters={state.filters}
+        changeQueryParameters={changeQueryParameters}
       />
       <CountriesCardsContainer 
         countries={
-          state.search.isSearched ?
-          state.search.filteredCountries : 
-          state.initial.allCountries
+          state.search.filteredCountries
         }
         page={state.page}
         setPage={setPage}

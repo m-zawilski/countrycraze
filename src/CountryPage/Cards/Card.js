@@ -19,18 +19,18 @@ const Card = styled.div`
     border-top: 1px solid #aaa;
     padding: 10px;
     margin: 0;
+    display: flex;
+    justify-content: space-between;
   }
 
   .left {
-    float: left;
-    max-width: 35%;
-    text-align: left;
+    max-width: 40%;
     font-weight: bold;
   }
 
   .right {
-    float: right;
-    max-width: 60%;
+    max-width: 55%;
+    align-self: center;
     text-align: right;
   }
 

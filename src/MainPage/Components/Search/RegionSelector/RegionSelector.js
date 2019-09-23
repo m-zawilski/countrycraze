@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import styled from "styled-components";
 
 const RegionSelect = styled.select`
@@ -10,19 +10,37 @@ const RegionSelect = styled.select`
 `
 
 const RegionSelector = (props) => {
+  const region = findRegion(props.regionsMapping, props.selectedSubregion);
+  const defaultRegion = props.selectedRegion ? props.selectedRegion 
+  : props.selectedSubregion ? region
+  : "";
+  const defaultSubregions = props.regionsMapping[defaultRegion]["subregion"].sort();
+
+  useEffect(() => {
+    if(defaultSubregions.length > 1){
+      props.setSubregions(["", ...defaultSubregions])
+    } else {
+      props.setSubregions([""])
+    }
+  }, [defaultSubregions, props.setSubregions])
+
   return (
-    <RegionSelect onChange={(e) => {
-      let subregion = props.regionsMapping[e.target.value]["subregion"].sort();
-      if(e.target.value !== "" && 
-        props.regionsMapping[e.target.value]["subregion"].length > 1){
-        props.setSubregions(["", ...subregion]);
-      } else {
-        props.setSubregions([""]);
+    <RegionSelect 
+      defaultValue={defaultRegion}
+      onChange={(e) => {
+        let subregions = props.regionsMapping[e.target.value]["subregion"].sort();
+        if(e.target.value !== "" && 
+          props.regionsMapping[e.target.value]["subregion"].length > 1){
+          props.setSubregions(["", ...subregions]);
+        } else {
+          props.setSubregions([...subregions]);
+        }
+        props.setSelectedSubregion("");
+        props.changeRegionFilter(e.target.value)
+        props.changeSubregionFilter("")
+        props.changeQueryParameters(e.target.value ? `region=${e.target.value}` : '')
       }
-      props.setSelectedSubregion("");
-      props.changeRegionFilter(e.target.value)
-      props.changeSubregionFilter("")
-    }}>
+    }>
       {Object.keys(props.regionsMapping).sort().map((region, i) => {
         return <option 
           value={region}
@@ -31,6 +49,17 @@ const RegionSelector = (props) => {
       })}
     </RegionSelect>
   )
+}
+
+const findRegion = (regionsMapping, selectedSubregion) => {
+  for(let region in regionsMapping) {
+    for(let subregion of regionsMapping[region]["subregion"]){
+      if(subregion === selectedSubregion){
+        return region;
+      }
+    }
+  }
+  return "";
 }
 
 export default RegionSelector

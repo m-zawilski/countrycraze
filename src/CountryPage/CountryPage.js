@@ -13,8 +13,22 @@ import CurrencyAccordionCard from './Cards/CurrencyAccordionCard';
 import RegionalBlocAccordionCard from './Cards/RegionalBlocAccordionCard';
 import AlternativeSpellingsCard from './Cards/AlternativeSpellingsCard';
 import NeighboursCard from './Cards/NeighboursCard';
+import EmptyCheck from '../Common/EmptyCheck';
 
 const widthChange = "750px";
+
+const Breadcrumb = styled.div`
+  margin: 20px 20px 10px 20px;
+  color: white;
+
+  a {
+    color: white;
+  }
+
+  span {
+    margin: 0 3px;
+  }
+`
 
 const Div = styled.div`
   display: flex;
@@ -93,8 +107,20 @@ function CountryPage({match}) {
   }, [match.params.alpha3Code])
 
   return (country && country.name) ? (
-    <>
-      <Link to="/countrycraze">Back</Link>
+    <div>
+      <Breadcrumb>
+        <Link to="/countrycraze">Home</Link>
+        <EmptyCheck value={country.region}>
+          <span>></span>
+          <Link to={{pathname: "/countrycraze", search: `region=${country.region}`}}>{country.region}</Link>
+        </EmptyCheck>
+        <EmptyCheck value={country.subregion}>
+          <span>></span>
+          <Link to={{ pathname: "/countrycraze", 
+                      search: `region=${country.region}&subregion=${country.subregion}`}
+            }>{country.subregion}</Link>
+        </EmptyCheck>
+      </Breadcrumb>
       <Div>
         <Column>
           <MainCard country={country}/>
@@ -115,7 +141,7 @@ function CountryPage({match}) {
           <TwitterApiCard/> */}
         </Column>
       </Div>
-    </>
+    </div>
   ) : null;
 }
 

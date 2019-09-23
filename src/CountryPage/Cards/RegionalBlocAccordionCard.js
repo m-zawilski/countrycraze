@@ -5,13 +5,13 @@ import EmptyCheck from '../../Common/EmptyCheck';
 
 function RegionalBlocAccordionCard({country}) {
   return (
-    <Card>
-      <EmptyCheck value={country.regionalBlocs}>
-        <RegionalBlocsAccordion
-          values={country.regionalBlocs}
-        />
-      </EmptyCheck>
-    </Card>
+    <EmptyCheck value={country.regionalBlocs}>
+      <Card>
+          <RegionalBlocsAccordion
+            values={country.regionalBlocs}
+          />
+      </Card>
+    </EmptyCheck>
   )
 }
 

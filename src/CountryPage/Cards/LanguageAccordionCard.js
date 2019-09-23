@@ -5,13 +5,13 @@ import EmptyCheck from '../../Common/EmptyCheck';
 
 function LanguageAccordionCard({country}) {
   return (
-    <Card>
-      <EmptyCheck value={country.languages}>
-        <LanguagesAccordion
-          values={country.languages}
-        />
-      </EmptyCheck>
-    </Card>
+    <EmptyCheck value={country.languages}>
+      <Card>
+          <LanguagesAccordion
+            values={country.languages}
+          />
+      </Card>
+    </EmptyCheck>
   )
 }
 

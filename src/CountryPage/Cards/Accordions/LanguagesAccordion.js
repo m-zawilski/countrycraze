@@ -12,6 +12,7 @@ function LanguagesAccordion(props) {
         length={props.values.length}
         setActiveId={setActiveId}
         activeId={activeId}
+        values={props.values}
       >
         <p>
           <span className="left">Name</span> 

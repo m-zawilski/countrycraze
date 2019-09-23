@@ -1,6 +1,13 @@
 import React from 'react'
 import Card from './Card';
 import EmptyCheck from '../../Common/EmptyCheck';
+import styled from 'styled-components';
+
+const Timezone = styled.span`
+  display: block;
+  margin: 0;
+  padding: 0;
+`
 
 function CodesCard({country}) {
   return (
@@ -40,19 +47,21 @@ function CodesCard({country}) {
           </span>
         </p>
       </EmptyCheck>
-      <p>
-        <span className="left">Phone codes</span> 
-        <span className="right">
-          {Object.values(country.callingCodes).reduce((acc, el) => {
-            return acc + el + " ";
-          }, "")}
-        </span>
-      </p>
+      <EmptyCheck value={country.callingCodes}>
+        <p>
+          <span className="left">Phone codes</span> 
+          <span className="right">
+            {Object.values(country.callingCodes).reduce((acc, el) => {
+              return acc + el + " ";
+            }, "")}
+          </span>
+        </p>
+      </EmptyCheck>
       <p>
         <span className="left">Timezones</span> 
         <span className="right">
           {Object.values(country.timezones).map((el, i) => {
-            return <React.Fragment key={i}>{el}</React.Fragment>
+            return <Timezone key={i}>{el}</Timezone>
           }, "")}
         </span>
       </p>

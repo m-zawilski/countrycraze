@@ -4,16 +4,19 @@ import App from './App';
 import * as serviceWorker from './serviceWorker';
 import { createGlobalStyle } from "styled-components";
 import { BrowserRouter } from "react-router-dom";
+import { createBrowserHistory } from "history";
+
+const customHistory = createBrowserHistory();
 
 const GlobalStyle = createGlobalStyle`
   body {
     margin: 0;
-    background: lightblue;
+    background: linear-gradient(rgba(0, 0, 0, 60%), rgba(0, 0, 0, 65%)), url('/img/background.jpg');
   }
 `
 
 ReactDOM.render(
-  <BrowserRouter>
+  <BrowserRouter history={customHistory}>
     <GlobalStyle/>
     <App />
   </BrowserRouter>

@@ -14,10 +14,12 @@ function MainCard({country}) {
         <span className="left">Native name</span> 
         <span className="right">{country.nativeName}</span>
       </p>
-      <p>
-        <span className="left">Region</span> 
-        <span className="right">{country.region}</span>
-      </p>
+      <EmptyCheck value={country.region}>
+        <p>
+          <span className="left">Region</span> 
+          <span className="right">{country.region}</span>
+        </p>
+      </EmptyCheck>
       <EmptyCheck value={country.subregion}>
         <p>
         <span className="left">Subregion</span> 

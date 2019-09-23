@@ -27,20 +27,19 @@ const Div = styled.div`
   }
 `
 
-const getButtons = (length, setActiveId, activeId) => {
+const getButtons = (length, setActiveId, activeId, values) => {
   if(length <= 1) { 
     return null 
   }
-  let tempArray = Array(length).fill(null);
-  
+
   return (
     <Div>
-      {tempArray.map((el, i) => {
+      {values.map((el, i) => {
         return <button 
             className={activeId === i ? "active" : ""}
             onClick={() => setActiveId(i)}
             key={i}
-          >{i}</button>
+          >{el.name}</button>
       })}
     </Div>
   )
@@ -51,7 +50,7 @@ function Accordion(props) {
     <>
       {props.children}
       {
-        getButtons(props.length, props.setActiveId, props.activeId)
+        getButtons(props.length, props.setActiveId, props.activeId, props.values)
       }
     </>
   )

@@ -9,13 +9,18 @@ import styled from "styled-components";
 const Div = styled.div`
   display: flex;
   flex-direction: column;
-  background: lightblue;
+  background: linear-gradient(
+    rgba(5, 30, 6, 40%),
+    rgba(5, 30, 6, 60%)
+
+  );
+  color: white;
   width: 100%;
   align-items: center;
   padding: 10px 10px 10px 10px;
   position: sticky;
   top: 0px;
-  border-bottom: 1px solid #000;
+  border-bottom: 2px solid #000;
 `
 
  const FiltersDiv = styled.div`
@@ -26,7 +31,7 @@ const Div = styled.div`
 
 function Search(props) {
   const [ subregions, setSubregions ] = useState([""]);
-  const [ selectedSubregion, setSelectedSubregion ] = useState("");
+  const [ selectedSubregion, setSelectedSubregion ] = useState(props.filters.subregion);
   return (
     <Div>
       <Searchbar search={props.search}/>
@@ -37,12 +42,17 @@ function Search(props) {
           setSelectedSubregion={setSelectedSubregion}
           changeRegionFilter={props.changeRegionFilter}
           changeSubregionFilter={props.changeSubregionFilter}
+          selectedRegion={props.filters.region}
+          selectedSubregion={selectedSubregion}
+          changeQueryParameters={props.changeQueryParameters}
         />
         <SubregionSelector
           selectedSubregion={selectedSubregion}
           setSelectedSubregion={setSelectedSubregion}
           changeSubregionFilter={props.changeSubregionFilter}
           subregions={subregions}
+          selectedRegion={props.filters.region}
+          changeQueryParameters={props.changeQueryParameters}
         />
         <SovereignFilter swapSovereignStates={props.swapSovereignStates}/>
       </FiltersDiv>

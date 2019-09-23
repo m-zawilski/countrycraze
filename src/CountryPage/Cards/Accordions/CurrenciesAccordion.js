@@ -1,9 +1,14 @@
 import React, { useState } from 'react';
 import Accordion from './Accordion';
+import EmptyCheck from '../../../Common/EmptyCheck';
 
 function CurrenciesAccordion(props) {
   const [ activeId, setActiveId ] = useState(0);
   const currentCurrency = props.values[activeId];
+
+  if(currentCurrency.name === null || currentCurrency.name === '[E]'){
+    return null;
+  }
 
   return (
     <>
@@ -12,15 +17,20 @@ function CurrenciesAccordion(props) {
         length={props.values.length}
         setActiveId={setActiveId}
         activeId={activeId}
+        values={props.values}
       >
         <p>
           <span className="left">Name</span> 
           <span className="right">{currentCurrency.name}</span>
         </p>
-        <p>
-          <span className="left">Code</span> 
-          <span className="right">{currentCurrency.code}</span>
-        </p>
+        <EmptyCheck value={currentCurrency.code}>
+          {
+            <p>
+              <span className="left">Code</span> 
+              <span className="right">{currentCurrency.code === '(none)' ? '-' : currentCurrency.code}</span>
+            </p>
+          }
+        </EmptyCheck>
         <p>
           <span className="left">Symbol</span> 
           <span className="right">{currentCurrency.symbol}</span>

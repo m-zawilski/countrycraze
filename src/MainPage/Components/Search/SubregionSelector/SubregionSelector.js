@@ -15,6 +15,7 @@ function SubregionSelector(props) {
       onChange={(e) => {
         props.setSelectedSubregion(e.target.value);
         props.changeSubregionFilter(e.target.value);
+        props.changeQueryParameters(`region=${props.selectedRegion}${e.target.value ? `&subregion=${e.target.value}` : ''}`)
       }}
     >
     {props.subregions.map((subregion, i) => {
