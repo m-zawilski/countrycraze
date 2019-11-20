@@ -2,13 +2,13 @@ import React from 'react'
 import styled from "styled-components";
 
 const SearchbarInput = styled.input`
-  border: 1px solid #0c4c0c;
+  border: 2px solid #000;
   outline: none;
   height: 20px;
   font-size: 12px;
   padding: 15px 10px;
-  width: 200px;
-  border-radius: 20px;
+  width: 300px;
+  border-radius: 8px;
   margin: 2px;
 `
 

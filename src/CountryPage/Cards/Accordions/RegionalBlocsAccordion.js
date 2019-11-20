@@ -1,7 +1,8 @@
-import React, { useState } from 'react';
+import React from 'react';
 import Accordion from './Accordion';
 import EmptyCheck from '../../../Common/EmptyCheck';
 import styled from 'styled-components';
+import { useAccordionValues } from './Hooks';
 
 const OtherSpelling = styled.span`
   display: block;
@@ -10,8 +11,8 @@ const OtherSpelling = styled.span`
 `
 
 function RegionalBlocsAccordion(props) {
-  const [ activeId, setActiveId ] = useState(0);
-  const currentBloc = props.values[activeId];
+  const [ activeId, setActiveId, getValue ] = useAccordionValues(props.values);
+  const currentBloc = getValue();
 
   return (
     <>

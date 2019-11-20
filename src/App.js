@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from "styled-components";
 import 'typeface-roboto';
-import { Route } from "react-router-dom";
+import { Route, Switch } from "react-router-dom";
 import MainPage from "./MainPage/MainPage";
 import CountryPage from "./CountryPage/CountryPage";
 
@@ -10,6 +10,12 @@ const Div = styled.div`
   flex-direction: column;
   align-items: center;
   font-family: Roboto;
+  color: #333;
+  background: linear-gradient(#222, #333);
+
+  button { 
+    user-select: none;
+  }
 
   * {
     box-sizing: border-box;
@@ -19,8 +25,11 @@ const Div = styled.div`
 function App() {
   return (
     <Div>
-      <Route exact path="/countrycraze" component={MainPage}/>
-      <Route path="/countrycraze/country/:alpha3Code" component={CountryPage}/>
+      <Switch>
+        <Route exact path="/countrycraze" component={MainPage}/>
+        <Route path="/countrycraze/country/:alpha3Code" component={CountryPage}/>
+        <Route path="*" component={MainPage}/>
+      </Switch>
     </Div>
   );
 }

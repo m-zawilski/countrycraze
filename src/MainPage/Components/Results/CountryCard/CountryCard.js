@@ -6,22 +6,23 @@ import { REGION_COLORS } from "../../../../Common/Constants";
 
 const Card = styled.div`
   width: 220px;
-  height: 280px;
+  height: 300px;
   text-align: center;
   color: #fff;
-  background: #333;
+  background: radial-gradient(#111, #333 125%);
   border-radius: 8px;
   border: 2px solid ${props => REGION_COLORS[props.region]};
   margin: 10px;
   transition-duration: .4s;
+  z-index: 0;
 
   p {
     margin: 5px;
   }
 
   &:hover {
-    background: #222;
-    transform: translateY(-10px);
+    background: radial-gradient(#000, #333 125%);
+    transform: translateY(-5px);
   }
 `
 
@@ -33,7 +34,7 @@ const Flag = styled.img`
 const HeaderDiv = styled.div`
   display: flex;
   width: 100%;
-  height: 22%;
+  height: 26%;
   border-radius: 8px 8px 0 0;
   h2, p {
     margin: 0;
@@ -70,7 +71,7 @@ const TitleDiv = styled.div`
 
 const BodyDiv = styled.div`
   display: flex;
-  height: 70%;
+  height: 66%;
   flex-direction: column;
   justify-content: center;
 `

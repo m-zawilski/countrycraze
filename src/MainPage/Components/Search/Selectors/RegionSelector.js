@@ -1,13 +1,5 @@
-import React, { useEffect } from 'react'
-import styled from "styled-components";
-
-const RegionSelect = styled.select`
-  width: 80px;
-  text-align-last: center;
-  margin: 3px;
-  cursor: pointer;
-  background: white;
-`
+import React, { useEffect, useState } from 'react';
+import Selector from './Selector';
 
 const RegionSelector = (props) => {
   const region = findRegion(props.regionsMapping, props.selectedSubregion);
@@ -25,7 +17,7 @@ const RegionSelector = (props) => {
   }, [defaultSubregions, props.setSubregions])
 
   return (
-    <RegionSelect 
+    <Selector 
       defaultValue={defaultRegion}
       onChange={(e) => {
         let subregions = props.regionsMapping[e.target.value]["subregion"].sort();
@@ -39,15 +31,17 @@ const RegionSelector = (props) => {
         props.changeRegionFilter(e.target.value)
         props.changeSubregionFilter("")
         props.changeQueryParameters(e.target.value ? `region=${e.target.value}` : '')
-      }
-    }>
+      }}
+      isActive={props.selectedRegion}
+    >
       {Object.keys(props.regionsMapping).sort().map((region, i) => {
         return <option 
           value={region}
           key={i}
-        >{region ? region : "(Region)"}</option>
+        >{region ? region : 
+          props.selectedRegion === region ? "Region: Any" : "All"}</option>
       })}
-    </RegionSelect>
+    </Selector>
   )
 }
 

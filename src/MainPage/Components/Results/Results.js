@@ -17,19 +17,24 @@ const Div = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
+  min-height: 100vh;
 `
 
 const P = styled.div`
   color: white;
+  text-align: center;
+  padding-top: 30px;
 `
 
 function Results(props) {
   const [pageResultsSize, setPageResultsSize] = useState(20);
 
   if(props.countries.length === 0){
-    return <P>
-      Sorry. Nothing was found. Change your search criteria.
-    </P>
+    return <Div>
+      <P>
+        Sorry. Nothing was found. Change your search criteria.
+      </P>
+    </Div>
   }
 
   return (

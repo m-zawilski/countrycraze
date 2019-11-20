@@ -11,7 +11,7 @@ const customHistory = createBrowserHistory();
 const GlobalStyle = createGlobalStyle`
   body {
     margin: 0;
-    background: linear-gradient(rgba(0, 0, 0, 60%), rgba(0, 0, 0, 65%)), url('/img/background.jpg');
+    background: linear-gradient(#222, #333);
   }
 `
 

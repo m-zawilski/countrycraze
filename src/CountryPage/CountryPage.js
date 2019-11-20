@@ -27,6 +27,7 @@ const Breadcrumb = styled.div`
 
   span {
     margin: 0 3px;
+    cursor: default;
   }
 `
 
@@ -36,7 +37,7 @@ const Div = styled.div`
   align-items: center;
   width: 90%;
   max-width: 1080px;
-  margin: 0;
+  margin: auto;
 
   * {
     cursor: default;
@@ -107,9 +108,9 @@ function CountryPage({match}) {
   }, [match.params.alpha3Code])
 
   return (country && country.name) ? (
-    <div>
+    <>
       <Breadcrumb>
-        <Link to="/countrycraze">Home</Link>
+        <Link to="/countrycraze">All</Link>
         <EmptyCheck value={country.region}>
           <span>></span>
           <Link to={{pathname: "/countrycraze", search: `region=${country.region}`}}>{country.region}</Link>
@@ -120,6 +121,8 @@ function CountryPage({match}) {
                       search: `region=${country.region}&subregion=${country.subregion}`}
             }>{country.subregion}</Link>
         </EmptyCheck>
+          <span>></span>
+          <span>{country.name}</span>
       </Breadcrumb>
       <Div>
         <Column>
@@ -136,12 +139,12 @@ function CountryPage({match}) {
           <LanguagesCard country={country}/>
         </Column>
         <Column>
-          <Flag src={country.flag}/>  
+          <Flag src={country.flag}/>
           {/* <WeatherApiCard/>
           <TwitterApiCard/> */}
         </Column>
       </Div>
-    </div>
+    </>
   ) : null;
 }
 

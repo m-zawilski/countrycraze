@@ -1,9 +1,10 @@
-import React, { useState } from 'react';
+import React from 'react';
 import Accordion from './Accordion';
+import { useAccordionValues } from './Hooks';
 
 function LanguagesAccordion(props) {
-  const [ activeId, setActiveId ] = useState(0);
-  const currentLanguage = props.values[activeId];
+  const [ activeId, setActiveId, getValue ] = useAccordionValues(props.values);
+  const currentLanguage = getValue();
 
   return (
     <>

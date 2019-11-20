@@ -2,16 +2,17 @@ import React, { useState } from 'react';
 import styled from "styled-components";
 
 const Sovereign = styled.button`
-  background: ${props => props.isActive ? "#1bb21b" : "#aaa"};
-  border: none;
+  background: ${props => props.isActive ? "#262" : "#ddd"};
+  color: ${props => props.isActive ? "#ddd" : "#333"};
   outline: none;
   border-radius: 2px;
-  color: ${props => props.isActive ? "#0c4c0c" : "#eee"};
-  font-size: .8em;
-  font-style: italic;
   cursor: pointer;
-  margin: 2px;
-  box-shadow: 1px 1px 2px #333;
+  margin: 3px;
+  padding: 0 8px;
+  border: 2px solid #000;
+  border-radius: 4px;
+  height: 25px;
+  width: 180px;
 `
 
 function SovereignFilter(props) {
@@ -27,7 +28,7 @@ function SovereignFilter(props) {
         }
         isActive={isActive}
       >
-        only sovereign
+        Sovereign Only
       </Sovereign> 
     </>
   )

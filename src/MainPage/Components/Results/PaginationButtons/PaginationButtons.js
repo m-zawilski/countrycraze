@@ -1,6 +1,9 @@
 import React from 'react';
 import styled from "styled-components";
 
+const activeColor = "#222";
+const inactiveColor = "#ccc";
+
 const PaginationButtonsDiv = styled.div`
   margin: 15px 0;
 `
@@ -11,7 +14,30 @@ const PaginationButton = styled.button`
   border-radius: 4px;
   outline: none;
   cursor: pointer;
-  background: ${props => props.active ? "lightblue" : "#eee"};
+  color: ${props => props.active ? activeColor : inactiveColor};
+  background: ${props => props.active ? inactiveColor : activeColor};
+  border: 2px solid ${inactiveColor};
+  width: 35px;
+  height: 35px;
+  transition-duration: .3s;
+
+  &:hover {
+    background: ${inactiveColor};
+    color: ${activeColor};
+  }
+`
+
+const Span = styled.button`
+  padding: 8px;
+  margin: 2px;
+  border-radius: 4px;
+  outline: none;
+  cursor: default;
+  color: ${"#777"};
+  background: ${activeColor};
+  border: 2px solid ${"#777"};
+  width: 35px;
+  height: 35px;
 `
 
 const getPaginationButtons = (pagesCount, setPage, currentPage) => {
@@ -36,7 +62,7 @@ const getPaginationButtons = (pagesCount, setPage, currentPage) => {
         return null;
       } else {
         isBreakShown = true;
-        return <span key={pageNumber}>...</span>;
+        return <Span key={pageNumber}><strong>...</strong></Span>;
       }
     }
   })

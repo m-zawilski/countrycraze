@@ -144,7 +144,7 @@ const search = (state, currentQuery = "") => {
   } 
   return {
     currentQuery: currentQuery,
-    filteredCountries: state.initial.allCountries,
+    filteredCountries: sortCountries(state.initial.allCountries, state.sortBy),
     isSearched: false
   };
 }

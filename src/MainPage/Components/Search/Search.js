@@ -1,7 +1,7 @@
 import React, { useState } from "react";
-import RegionSelector from "./RegionSelector/RegionSelector";
-import SubregionSelector from "./SubregionSelector/SubregionSelector";
-import SortingSelectors from "./SortingSelectors/SortingSelectors";
+import RegionSelector from "./Selectors/RegionSelector";
+import SubregionSelector from "./Selectors/SubregionSelector";
+import SortingSelectors from "./Selectors/SortingSelector";
 import SovereignFilter from "./SovereignFilter/SovereignFilter";
 import Searchbar from "./Searchbar/Searchbar";
 import styled from "styled-components";
@@ -10,23 +10,23 @@ const Div = styled.div`
   display: flex;
   flex-direction: column;
   background: linear-gradient(
-    rgba(5, 30, 6, 40%),
-    rgba(5, 30, 6, 60%)
-
+    rgba(0, 0, 0, 80%),
+    rgba(0, 0, 0, 70%)
   );
+  z-index: 100;
   color: white;
   width: 100%;
   align-items: center;
   padding: 10px 10px 10px 10px;
   position: sticky;
   top: 0px;
-  border-bottom: 2px solid #000;
 `
 
  const FiltersDiv = styled.div`
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
+  align-items: center;
  `
 
 function Search(props) {
@@ -54,9 +54,11 @@ function Search(props) {
           selectedRegion={props.filters.region}
           changeQueryParameters={props.changeQueryParameters}
         />
+        <SortingSelectors 
+          changeSorting={props.changeSorting}
+        />
         <SovereignFilter swapSovereignStates={props.swapSovereignStates}/>
       </FiltersDiv>
-      <SortingSelectors changeSorting={props.changeSorting}/>
     </Div>
   )
 }
