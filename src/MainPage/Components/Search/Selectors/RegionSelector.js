@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import Selector from './Selector';
 
 const RegionSelector = (props) => {
@@ -7,14 +7,15 @@ const RegionSelector = (props) => {
   : props.selectedSubregion ? region
   : "";
   const defaultSubregions = props.regionsMapping[defaultRegion]["subregion"].sort();
+  const setSubregions = props.setSubregions;
 
   useEffect(() => {
     if(defaultSubregions.length > 1){
-      props.setSubregions(["", ...defaultSubregions])
+      setSubregions(["", ...defaultSubregions])
     } else {
-      props.setSubregions([""])
+      setSubregions([""])
     }
-  }, [defaultSubregions, props.setSubregions])
+  }, [defaultSubregions, setSubregions])
 
   return (
     <Selector 

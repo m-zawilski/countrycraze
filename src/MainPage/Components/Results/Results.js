@@ -27,7 +27,7 @@ const P = styled.div`
 `
 
 function Results(props) {
-  const [pageResultsSize, setPageResultsSize] = useState(20);
+  const [pageResultsSize] = useState(20);
 
   if(props.countries.length === 0){
     return <Div>
