@@ -9,6 +9,11 @@ const NeighboursDiv = styled.div`
   justify-content: space-around;
   flex-wrap: wrap;
   padding: 20px 10px;
+
+  a {
+    color: #333;
+    margin: 0 3px;
+  }
 `
 
 function NeighboursCard({country}) {
@@ -25,7 +30,6 @@ function NeighboursCard({country}) {
               return <Link 
                 to={`/countrycraze/country/${neighbour}`} 
                 key={i}
-                style={{ color: '#13e', textDecoration: 'inherit', margin: '0 3px'}}
               >{neighbour}</Link>
             }, "")}
         </NeighboursDiv>

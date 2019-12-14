@@ -11,7 +11,7 @@ const Div = styled.div`
   align-items: center;
   font-family: Roboto;
   color: #333;
-  background: linear-gradient(#222, #333);
+  background: linear-gradient(#333, #444);
 
   button { 
     user-select: none;

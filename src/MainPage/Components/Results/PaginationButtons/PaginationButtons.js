@@ -2,7 +2,7 @@ import React from 'react';
 import styled from "styled-components";
 
 const activeColor = "#222";
-const inactiveColor = "#ccc";
+const inactiveColor = "#999";
 
 const PaginationButtonsDiv = styled.div`
   margin: 15px 0;

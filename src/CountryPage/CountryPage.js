@@ -5,8 +5,6 @@ import styled from 'styled-components';
 import MainCard from './Cards/MainCard';
 import StatisticsCard from './Cards/StatisticsCard';
 import CodesCard from './Cards/CodesCard';
-import WeatherApiCard from './Cards/WeatherApiCard';
-import TwitterApiCard from './Cards/TwitterApiCard';
 import LanguagesCard from './Cards/LanguagesCard';
 import LanguageAccordionCard from './Cards/LanguageAccordionCard';
 import CurrencyAccordionCard from './Cards/CurrencyAccordionCard';
@@ -127,21 +125,19 @@ function CountryPage({match}) {
       <Div>
         <Column>
           <MainCard country={country}/>
-          <AlternativeSpellingsCard country={country}/>
-          <NeighboursCard country={country}/>
           <StatisticsCard country={country}/>
           <CodesCard country={country}/>
         </Column>
         <Column>
           <LanguageAccordionCard country={country}/>
           <CurrencyAccordionCard country={country}/>
-          <RegionalBlocAccordionCard country={country}/>
           <LanguagesCard country={country}/>
         </Column>
         <Column>
           <Flag src={country.flag}/>
-          {/* <WeatherApiCard/>
-          <TwitterApiCard/> */}
+          <AlternativeSpellingsCard country={country}/>
+          <NeighboursCard country={country}/>
+          <RegionalBlocAccordionCard country={country}/>
         </Column>
       </Div>
     </>
